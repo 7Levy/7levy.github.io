@@ -5,10 +5,10 @@
         <description>geth - 标签 - Maahes Satoshi</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 05 Sep 2019 16:30:05 &#43;0800</lastBuildDate><atom:link href="https://7levy.github.io/tags/geth/" rel="self" type="application/rss+xml" /><item>
     <title>Geth POA联盟链搭建</title>
-    <link>https://7levy.github.io/posts/%E5%8C%BA%E5%9D%97%E9%93%BE/geth-poa%E8%81%94%E7%9B%9F%E9%93%BE%E6%90%AD%E5%BB%BA/</link>
+    <link>https://7levy.github.io/posts/geth-poa%E8%81%94%E7%9B%9F%E9%93%BE%E6%90%AD%E5%BB%BA/</link>
     <pubDate>Thu, 05 Sep 2019 16:30:05 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://7levy.github.io/posts/%E5%8C%BA%E5%9D%97%E9%93%BE/geth-poa%E8%81%94%E7%9B%9F%E9%93%BE%E6%90%AD%E5%BB%BA/</guid>
+    <guid>https://7levy.github.io/posts/geth-poa%E8%81%94%E7%9B%9F%E9%93%BE%E6%90%AD%E5%BB%BA/</guid>
     <description><![CDATA[搭建以太坊联盟链 创建节点目录 1 2 3 [root@google01 private-POA-chian]# mkdir node-1 node-2 node-3 [root@google01 private-POA-chian]# ls node-1 node-2 node-3 新建账户 1 2 3 [root@google01 private-POA-chian]# geth --datadir ./node-1/data account new [root@google01 private-POA-chian]# geth --datadir ./node-2/data account new [root@google01 private-POA-chian]# geth --datadir ./node-3/data account new 创建的地址 node-1：8]]></description>
 </item></channel>
 </rss>
