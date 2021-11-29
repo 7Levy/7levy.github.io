@@ -4,6 +4,8 @@
 > 原文链接：https://future.a16z.com/why-web3-matters/
 >
 > 作者：Chris Dixon
+>
+> 翻译：https://github.com/7Levy
 
 Web1（约为1990-2005）是一种关于非中心化和社区治理的开放协议。其绝大部分价值都集中在边缘网络—用户及构建者。
 
