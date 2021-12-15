@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Analysis of a technical smart contract scam-一起智能合约骗局剖析 - Maahes Satoshi</title><meta name="Description" content="人生、技术、投资和这个世界."><meta property="og:title" content="Analysis of a technical smart contract scam-一起智能合约骗局剖析" />
-<meta property="og:description" content="引言 我曾经在油管上看到一个叫做“我是如何在BSC上通过闪电贷套利获取BNB的&quot;的视频。这个视频标题很引人注目，因为在2021年初每" />
+<meta property="og:description" content="原文链接：https://jeiwan.net/posts/flashloan-scam/ 作者：Ivan Kuznetsov 翻译：https://github" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://7levy.github.io/posts/analysis-of-a-technical-smart-contract-scam/" /><meta property="og:image" content="https://7levy.github.io/posts/analysis-of-a-technical-smart-contract-scam/featured-image.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-11-27T12:10:05+08:00" />
@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://7levy.github.io/posts/analysis-of-a-technical-smart-contract-scam/featured-image.jpg"/>
 <meta name="twitter:title" content="Analysis of a technical smart contract scam-一起智能合约骗局剖析"/>
-<meta name="twitter:description" content="引言 我曾经在油管上看到一个叫做“我是如何在BSC上通过闪电贷套利获取BNB的&quot;的视频。这个视频标题很引人注目，因为在2021年初每"/>
+<meta name="twitter:description" content="原文链接：https://jeiwan.net/posts/flashloan-scam/ 作者：Ivan Kuznetsov 翻译：https://github"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,7 +33,7 @@
                             "url": "https:\/\/7levy.github.io\/posts\/analysis-of-a-technical-smart-contract-scam\/featured-image.jpg",
                             "width":  1920 ,
                             "height":  1080 
-                        }],"genre": "posts","keywords": "contract, ethereum, solidity, translate","wordcount":  1556 ,
+                        }],"genre": "posts","keywords": "contract, ethereum, solidity, translate","wordcount":  1636 ,
         "url": "https:\/\/7levy.github.io\/posts\/analysis-of-a-technical-smart-contract-scam\/","datePublished": "2021-11-27T12:10:05+08:00","dateModified": "2021-11-27T12:10:05+08:00","publisher": {
             "@type": "Organization",
             "name": "Levy"},"author": {
@@ -124,7 +124,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Analysis of a technical smart contract scam-一起智能合约骗局剖析</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/7Levy" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Levy</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ethereum/"><i class="far fa-folder fa-fw"></i>ethereum</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-27">2021-11-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1556 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-27">2021-11-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1636 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -146,7 +146,12 @@
     <li><a href="#总结">总结</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="引言">引言</h2>
+            </div><div class="content" id="content"><blockquote>
+<p>原文链接：https://jeiwan.net/posts/flashloan-scam/</p>
+<p>作者：Ivan Kuznetsov</p>
+<p>翻译：https://github.com/7Levy</p>
+</blockquote>
+<h2 id="引言">引言</h2>
 <p>我曾经在油管上看到一个叫做“我是如何在BSC上通过闪电贷套利获取BNB的&quot;的视频。这个视频标题很引人注目，因为在2021年初每个关注加密领域的人知道BSC链，它是以太坊的克隆链，并且大家肯定听说过在这个区块链上的DeFi被多次攻击。</p>
 <p>在以太坊上DeFi项目的成功后，币安创造了一个以太坊的复制品，据称币安资助了许多成功和先进的类以太坊DeFi项目。一切看起来都很好，直到2021年春天发生的一系列针对BSC的黑客攻击。</p>
 <p>大多数攻击使用的是类似的方案：</p>

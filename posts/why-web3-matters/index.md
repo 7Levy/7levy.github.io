@@ -1,9 +1,9 @@
 # Why Web3 Matters-为什么Web3如此重要？
 
 
-> 原文链接：https://future.a16z.com/why-web3-matters/
+> 原文链接：https://jeiwan.net/posts/flashloan-scam/
 >
-> 作者：Chris Dixon
+> 作者：Ivan Kuznetsov
 >
 > 翻译：https://github.com/7Levy
 

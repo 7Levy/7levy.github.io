@@ -1,6 +1,12 @@
 # Analysis of a technical smart contract scam-一起智能合约骗局剖析
 
 
+> 原文链接：https://jeiwan.net/posts/flashloan-scam/
+>
+> 作者：Ivan Kuznetsov
+>
+> 翻译：https://github.com/7Levy
+
 ## 引言
 
 我曾经在油管上看到一个叫做“我是如何在BSC上通过闪电贷套利获取BNB的"的视频。这个视频标题很引人注目，因为在2021年初每个关注加密领域的人知道BSC链，它是以太坊的克隆链，并且大家肯定听说过在这个区块链上的DeFi被多次攻击。
