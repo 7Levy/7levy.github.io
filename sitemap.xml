@@ -2,15 +2,19 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>https://7levy.github.io/posts/uniswap%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/</loc><lastmod>2021-11-28T15:10:05&#43;08:00</lastmod></url><url>
             <loc>https://7levy.github.io/posts/analysis-of-a-technical-smart-contract-scam/</loc><lastmod>2021-11-27T12:10:05&#43;08:00</lastmod></url><url>
             <loc>https://7levy.github.io/posts/geth-poa%E8%81%94%E7%9B%9F%E9%93%BE%E6%90%AD%E5%BB%BA/</loc><lastmod>2019-09-05T16:30:05&#43;08:00</lastmod></url><url>
+            <loc>https://7levy.github.io/categories/</loc><lastmod>2021-11-28T15:10:05&#43;08:00</lastmod></url><url>
+            <loc>https://7levy.github.io/tags/ethereum/</loc><lastmod>2021-11-28T15:10:05&#43;08:00</lastmod></url><url>
+            <loc>https://7levy.github.io/categories/ethereum/</loc><lastmod>2021-11-28T15:10:05&#43;08:00</lastmod></url><url>
+            <loc>https://7levy.github.io/</loc><lastmod>2021-11-28T15:10:05&#43;08:00</lastmod></url><url>
+            <loc>https://7levy.github.io/posts/</loc><lastmod>2021-11-28T15:10:05&#43;08:00</lastmod></url><url>
+            <loc>https://7levy.github.io/tags/solidity/</loc><lastmod>2021-11-28T15:10:05&#43;08:00</lastmod></url><url>
+            <loc>https://7levy.github.io/tags/</loc><lastmod>2021-11-28T15:10:05&#43;08:00</lastmod></url><url>
+            <loc>https://7levy.github.io/tags/uniswap/</loc><lastmod>2021-11-28T15:10:05&#43;08:00</lastmod></url><url>
             <loc>https://7levy.github.io/tags/a16z/</loc><lastmod>2021-11-27T12:10:05&#43;08:00</lastmod></url><url>
-            <loc>https://7levy.github.io/categories/</loc><lastmod>2021-11-27T12:10:05&#43;08:00</lastmod></url><url>
-            <loc>https://7levy.github.io/tags/ethereum/</loc><lastmod>2021-11-27T12:10:05&#43;08:00</lastmod></url><url>
-            <loc>https://7levy.github.io/categories/ethereum/</loc><lastmod>2021-11-27T12:10:05&#43;08:00</lastmod></url><url>
-            <loc>https://7levy.github.io/</loc><lastmod>2021-11-27T12:10:05&#43;08:00</lastmod></url><url>
-            <loc>https://7levy.github.io/posts/</loc><lastmod>2021-11-27T12:10:05&#43;08:00</lastmod></url><url>
-            <loc>https://7levy.github.io/tags/</loc><lastmod>2021-11-27T12:10:05&#43;08:00</lastmod></url><url>
+            <loc>https://7levy.github.io/tags/contract/</loc><lastmod>2021-11-27T12:10:05&#43;08:00</lastmod></url><url>
             <loc>https://7levy.github.io/tags/translate/</loc><lastmod>2021-11-27T12:10:05&#43;08:00</lastmod></url><url>
             <loc>https://7levy.github.io/tags/web3/</loc><lastmod>2021-11-27T12:10:05&#43;08:00</lastmod></url><url>
             <loc>https://7levy.github.io/categories/web3/</loc><lastmod>2021-11-27T12:10:05&#43;08:00</lastmod></url><url>
