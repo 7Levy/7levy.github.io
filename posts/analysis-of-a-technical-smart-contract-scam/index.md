@@ -40,7 +40,6 @@
 
 ```
 pragma solidity ^0.5.0;
-
 // PancakeSwap Smart Contracts
 import "https://github.com/pancakeswap/pancake-swap-core/blob/master/contracts/interfaces/IPancakeCallee.sol";
 import "https://github.com/pancakeswap/pancake-swap-core/blob/master/contracts/interfaces/IPancakeFactory.sol";

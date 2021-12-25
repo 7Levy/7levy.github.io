@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>dYdX解读系列1—白皮书核心内容 - 叽喳Block</title><meta name="Description" content="人生、技术、投资和这个世界."><meta property="og:title" content="dYdX解读系列1—白皮书核心内容" />
+<meta property="og:description" content="本文作者：https://github.com/7Levy 白皮书翻译：https://github.com/7Levy 参考链接： dYdX whitepaper-Antonio Juliano dYdX Introduction 区" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/" /><meta property="og:image" content="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/featured-1image.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-30T08:15:05+08:00" />
+<meta property="article:modified_time" content="2021-11-30T08:15:05+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/featured-1image.jpg"/>
+<meta name="twitter:title" content="dYdX解读系列1—白皮书核心内容"/>
+<meta name="twitter:description" content="本文作者：https://github.com/7Levy 白皮书翻译：https://github.com/7Levy 参考链接： dYdX whitepaper-Antonio Juliano dYdX Introduction 区"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/" /><link rel="prev" href="https://7levy.github.io/posts/uniswap%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "dYdX解读系列1—白皮书核心内容",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/7levy.github.io\/posts\/dydx%E8%A7%A3%E8%AF%BB\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/7levy.github.io\/posts\/dydx%E8%A7%A3%E8%AF%BB\/featured-image.jpg",
+                            "width":  1140 ,
+                            "height":  570 
+                        }],"genre": "posts","keywords": "dYdX, DeFi, whitepaper","wordcount":  1025 ,
+        "url": "https:\/\/7levy.github.io\/posts\/dydx%E8%A7%A3%E8%AF%BB\/","datePublished": "2021-11-30T08:15:05+08:00","dateModified": "2021-11-30T08:15:05+08:00","publisher": {
+            "@type": "Organization",
+            "name": "Levy"},"author": {
+                "@type": "Person",
+                "name": "Levy"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="叽喳Block"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/chain.png"
+        data-srcset="/images/chain.png, /images/chain.png 1.5x, /images/chain.png 2x"
+        data-sizes="auto"
+        alt="/images/chain.png"
+        title="/images/chain.png" /><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入文章名称或内容" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="叽喳Block"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/chain.png"
+        data-srcset="/images/chain.png, /images/chain.png 1.5x, /images/chain.png 2x"
+        data-sizes="auto"
+        alt="/images/chain.png"
+        title="/images/chain.png" /><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入文章名称或内容" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">dYdX解读系列1—白皮书核心内容</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/7Levy" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Levy</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/defi/"><i class="far fa-folder fa-fw"></i>DeFi</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-30">2021-11-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1025 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/dydx%E8%A7%A3%E8%AF%BB/featured-image.jpg"
+        data-srcset="/posts/dydx%E8%A7%A3%E8%AF%BB/featured-image.jpg, /posts/dydx%E8%A7%A3%E8%AF%BB/featured-image.jpg 1.5x, /posts/dydx%E8%A7%A3%E8%AF%BB/featured-image.jpg 2x"
+        data-sizes="auto"
+        alt="/posts/dydx%E8%A7%A3%E8%AF%BB/featured-image.jpg"
+        title="/posts/dydx%E8%A7%A3%E8%AF%BB/featured-image.jpg" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#dydx-introduction">dYdX Introduction</a></li>
+    <li><a href="#现有成果">现有成果</a></li>
+    <li><a href="#协议">协议</a>
+      <ul>
+        <li><a href="#保证金交易协议">保证金交易协议</a>
+          <ul>
+            <li><a href="#1简介">1.简介</a></li>
+            <li><a href="#2使用案例">2.使用案例</a></li>
+            <li><a href="#3概述">3.概述</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文作者：https://github.com/7Levy</p>
+<p>白皮书翻译：https://github.com/7Levy</p>
+<p>参考链接：</p>
+<ul>
+<li><a href="https://whitepaper.dydx.exchange/" target="_blank" rel="noopener noreffer">dYdX whitepaper-Antonio Juliano</a></li>
+</ul>
+</blockquote>
+<h2 id="dydx-introduction">dYdX Introduction</h2>
+<p>区块链的兴起让任何人都可以在开放网络上拥有和转移资产，而无需去信任任何外方。与现有经济体系结构不同的是，区块链在全世界都是自由且同样可用的。这个现象促使了区块链上数字资产的迅猛增长。许多中心化和去中心化的平台旨在促进已存在资产的高效交换，有更多平台正在开发中。这些平台允许投资者持有各种资产的多头头寸。然而，这些平台目前很难甚至是不可能去持有更复杂的头寸。</p>
+<p>dYdX允许创建完全新类别的资产，这些资产可以从基于区块链的底层资产中获利。通过衍生品和保证金交易，投资者们可以用投资组合去实现优秀的风险管理，同时这也开辟了新的投机途径。</p>
+<h2 id="现有成果">现有成果</h2>
+<p>支持衍生品或保证金交易的去中心化协议很少，而且他们都没什么特别重要的用途。中心化交易所们也无法提供足够多的去中心化金融资产。因此，我们很难在现有的大部分去中心化资产上卖空或持有更复杂的头寸。</p>
+<h2 id="协议">协议</h2>
+<p>dYdX包含了一些列协议，指定不同金融产品的操作和执行。我们计划优先开发最广泛流行的类型。我们在下面大概描述了下期权和保证金交易协议的实现。我们计划在未来开发更多的金融产品。</p>
+<h3 id="保证金交易协议">保证金交易协议</h3>
+<h4 id="1简介">1.简介</h4>
+<p>在一个保证金交易中，交易者借入一项资产然后立马将其换成另一项资产。资产必须偿还给贷方，通常也连同利息一起。 保证金交易中包括卖空和买多。</p>
+<p>在卖空交易中，某投资者借入一项资产然后以报价货币将其售出。如果资产价格下跌，由于重新买入后去偿还贷方的成本低于初始售价，那么这个投资者就可以从中获利。如果资产价格上涨，由于重新买入后去偿还贷方的成本高于初始售价，那么这个投资者就会亏损。</p>
+<p>在买多交易中，某投资者借入报价货币然后用其买入一项资产。如果价格上涨，投资者获利，如果价格下跌，投资者亏损。持仓的收益或亏损等于标的资产的变化乘以杠杆比例，即借入金额加上交易者支付的金额和交易者支付的金额之比。</p>
+<h4 id="2使用案例">2.使用案例</h4>
+<p>卖空被投资者用于从下跌的资产中获利，卖空可用于投机和对冲。当投资者们认为某项资产价格会下降时，他们可以将卖空作为投机手段。卖空相关资产去对冲现有的持仓。</p>
+<p>当资产价格上涨时，买多的杠杆用于乘以收益。买多可用于投机，因为其可以使交易人用更少的资金去获得更多的收益。投资者可以使用买多进行更有效的资金分配，因为每项投资实现相同结果所需的资本更少。</p>
+<p>用于保证金头寸的借贷，可以给借贷人带来贷款利息。</p>
+<h4 id="3概述">3.概述</h4>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-30</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/" data-title="dYdX解读系列1—白皮书核心内容" data-hashtags="dYdX,DeFi,whitepaper"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/" data-hashtag="dYdX"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Linkedin" data-sharer="linkedin" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/" data-title="dYdX解读系列1—白皮书核心内容" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/" data-title="dYdX解读系列1—白皮书核心内容"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/" data-title="dYdX解读系列1—白皮书核心内容" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/" data-title="dYdX解读系列1—白皮书核心内容"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/dydx/">dYdX</a>,&nbsp;<a href="/tags/defi/">DeFi</a>,&nbsp;<a href="/tags/whitepaper/">whitepaper</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/uniswap%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" class="prev" rel="prev" title="Uniswap设计与实现"><i class="fas fa-angle-left fa-fw"></i>Uniswap设计与实现</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">我们绝不倒下.让刽子手显得高大.好阻挡那自由的风</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Levy</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"叽喳Block","id-2":"叽喳Block"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":0,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
