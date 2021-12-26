@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>dYdX解读系列1—白皮书核心内容 - 叽喳Block</title><meta name="Description" content="人生、技术、投资和这个世界."><meta property="og:title" content="dYdX解读系列1—白皮书核心内容" />
-<meta property="og:description" content="本文作者：https://github.com/7Levy 白皮书翻译：https://github.com/7Levy 参考链接： dYdX whitepaper-Antonio Juliano dYdX Introduction 区" />
+<meta property="og:description" content="本文作者：@7Levy 白皮书翻译：@7Levy 参考链接： dYdX whitepaper-Antonio Juliano dYdX Introduction 区块链的兴起让任何人都可以在开放网络上拥有和转移资产，而无需去信任任何外方" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/" /><meta property="og:image" content="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/featured-1image.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-11-30T08:15:05+08:00" />
@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/featured-1image.jpg"/>
 <meta name="twitter:title" content="dYdX解读系列1—白皮书核心内容"/>
-<meta name="twitter:description" content="本文作者：https://github.com/7Levy 白皮书翻译：https://github.com/7Levy 参考链接： dYdX whitepaper-Antonio Juliano dYdX Introduction 区"/>
+<meta name="twitter:description" content="本文作者：@7Levy 白皮书翻译：@7Levy 参考链接： dYdX whitepaper-Antonio Juliano dYdX Introduction 区块链的兴起让任何人都可以在开放网络上拥有和转移资产，而无需去信任任何外方"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,7 +33,7 @@
                             "url": "https:\/\/7levy.github.io\/posts\/dydx%E8%A7%A3%E8%AF%BB\/featured-image.jpg",
                             "width":  1140 ,
                             "height":  570 
-                        }],"genre": "posts","keywords": "dYdX, DeFi, whitepaper","wordcount":  1025 ,
+                        }],"genre": "posts","keywords": "dYdX, DeFi, whitepaper","wordcount":  1513 ,
         "url": "https:\/\/7levy.github.io\/posts\/dydx%E8%A7%A3%E8%AF%BB\/","datePublished": "2021-11-30T08:15:05+08:00","dateModified": "2021-11-30T08:15:05+08:00","publisher": {
             "@type": "Organization",
             "name": "Levy"},"author": {
@@ -124,8 +124,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">dYdX解读系列1—白皮书核心内容</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/7Levy" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Levy</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/defi/"><i class="far fa-folder fa-fw"></i>DeFi</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-30">2021-11-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1025 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-30">2021-11-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1513 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -144,20 +144,14 @@
     <li><a href="#现有成果">现有成果</a></li>
     <li><a href="#协议">协议</a>
       <ul>
-        <li><a href="#保证金交易协议">保证金交易协议</a>
-          <ul>
-            <li><a href="#1简介">1.简介</a></li>
-            <li><a href="#2使用案例">2.使用案例</a></li>
-            <li><a href="#3概述">3.概述</a></li>
-          </ul>
-        </li>
+        <li><a href="#保证金交易协议">保证金交易协议</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
-<p>本文作者：https://github.com/7Levy</p>
-<p>白皮书翻译：https://github.com/7Levy</p>
+<p>本文作者：<a href="https://github.com/7Levy" target="_blank" rel="noopener noreffer">@7Levy</a></p>
+<p>白皮书翻译：<a href="https://github.com/7Levy" target="_blank" rel="noopener noreffer">@7Levy</a></p>
 <p>参考链接：</p>
 <ul>
 <li><a href="https://whitepaper.dydx.exchange/" target="_blank" rel="noopener noreffer">dYdX whitepaper-Antonio Juliano</a></li>
@@ -168,18 +162,29 @@
 <p>dYdX允许创建完全新类别的资产，这些资产可以从基于区块链的底层资产中获利。通过衍生品和保证金交易，投资者们可以用投资组合去实现优秀的风险管理，同时这也开辟了新的投机途径。</p>
 <h2 id="现有成果">现有成果</h2>
 <p>支持衍生品或保证金交易的去中心化协议很少，而且他们都没什么特别重要的用途。中心化交易所们也无法提供足够多的去中心化金融资产。因此，我们很难在现有的大部分去中心化资产上卖空或持有更复杂的头寸。</p>
+<!--....待翻译-->
 <h2 id="协议">协议</h2>
 <p>dYdX包含了一些列协议，指定不同金融产品的操作和执行。我们计划优先开发最广泛流行的类型。我们在下面大概描述了下期权和保证金交易协议的实现。我们计划在未来开发更多的金融产品。</p>
 <h3 id="保证金交易协议">保证金交易协议</h3>
-<h4 id="1简介">1.简介</h4>
+<p><strong>简介</strong></p>
 <p>在一个保证金交易中，交易者借入一项资产然后立马将其换成另一项资产。资产必须偿还给贷方，通常也连同利息一起。 保证金交易中包括卖空和买多。</p>
 <p>在卖空交易中，某投资者借入一项资产然后以报价货币将其售出。如果资产价格下跌，由于重新买入后去偿还贷方的成本低于初始售价，那么这个投资者就可以从中获利。如果资产价格上涨，由于重新买入后去偿还贷方的成本高于初始售价，那么这个投资者就会亏损。</p>
 <p>在买多交易中，某投资者借入报价货币然后用其买入一项资产。如果价格上涨，投资者获利，如果价格下跌，投资者亏损。持仓的收益或亏损等于标的资产的变化乘以杠杆比例，即借入金额加上交易者支付的金额和交易者支付的金额之比。</p>
-<h4 id="2使用案例">2.使用案例</h4>
+<p><strong>使用案例</strong></p>
 <p>卖空被投资者用于从下跌的资产中获利，卖空可用于投机和对冲。当投资者们认为某项资产价格会下降时，他们可以将卖空作为投机手段。卖空相关资产去对冲现有的持仓。</p>
 <p>当资产价格上涨时，买多的杠杆用于乘以收益。买多可用于投机，因为其可以使交易人用更少的资金去获得更多的收益。投资者可以使用买多进行更有效的资金分配，因为每项投资实现相同结果所需的资本更少。</p>
 <p>用于保证金头寸的借贷，可以给借贷人带来贷款利息。</p>
-<h4 id="3概述">3.概述</h4>
+<p><strong>概述</strong></p>
+<p>dYdX保证金交易协议使用了一个主以太坊合约来方便ERC20代币的去中心化保证金交易。贷款方对包含贷款信息(如数量、涉及代币和利率)的消息进行签名，以此来为保证金交易提供贷款。这些贷款可以在非区块链平台上传输和上市。</p>
+<p>交易者通过向dYdX保证金合约发送一笔包含贷款要约、借入代币的买单和要借入的金额的交易来建仓。一旦接收到这笔交易，该智能合约将保证金从交易者转移到自己的地址上，然后在外部的去中心化交易所(0x等)使用指定的买单将借出的代币售出。合约在头寸有效期内会保留押金和出售借贷代币所获得的的代币。</p>
+<p>当交易者发送一笔包含卖单的交易给合约时，仓位会关闭，这笔卖单以低于或等于抵押金额的价格出售欠贷款方的代币。收到这笔交易后，合约会用外部去中心交易所在订单创建者和其之间执行这笔交易。随后，合约把借出代币的欠款发送给贷款方。欠贷款方的金额包括利息。发送给交易方所有剩余的代币，这等于抵押金和利润。需要注意的是，如果价格和仓位是逆势的，利润可能为负。</p>
+<!--....待翻译-->
+<p><strong>实现</strong></p>
+<ul>
+<li>合约</li>
+</ul>
+<p>对于保证金交易，有三个需要用到的合约：Margin(保证金)合约、Proxy(代理合约)合约以及Vault(金库)合约。</p>
+<p>代理合约用于转移用户资金。用户在代理合约上设置代币津贴，授权代理合约代表他们转移资金。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
