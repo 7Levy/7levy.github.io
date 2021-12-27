@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>dYdX解读系列1—白皮书核心内容 - 叽喳Block</title><meta name="Description" content="人生、技术、投资和这个世界."><meta property="og:title" content="dYdX解读系列1—白皮书核心内容" />
-<meta property="og:description" content="本文作者：@7Levy 白皮书翻译：@7Levy 参考链接： dYdX whitepaper-Antonio Juliano dYdX Introduction 区块链的兴起让任何人都可以在开放网络上拥有和转移资产，而无需去信任任何外方" />
+<meta property="og:description" content="本文作者：@7Levy 白皮书翻译：@7Levy 参考链接： dYdX whitepaper-Antonio Juliano写 dYdX Introduction 区块链的兴起让任何人都可以在开放网络上拥有和转移资产，而无需" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/" /><meta property="og:image" content="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/featured-1image.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-11-30T08:15:05+08:00" />
@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/featured-1image.jpg"/>
 <meta name="twitter:title" content="dYdX解读系列1—白皮书核心内容"/>
-<meta name="twitter:description" content="本文作者：@7Levy 白皮书翻译：@7Levy 参考链接： dYdX whitepaper-Antonio Juliano dYdX Introduction 区块链的兴起让任何人都可以在开放网络上拥有和转移资产，而无需去信任任何外方"/>
+<meta name="twitter:description" content="本文作者：@7Levy 白皮书翻译：@7Levy 参考链接： dYdX whitepaper-Antonio Juliano写 dYdX Introduction 区块链的兴起让任何人都可以在开放网络上拥有和转移资产，而无需"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,7 +33,7 @@
                             "url": "https:\/\/7levy.github.io\/posts\/dydx%E8%A7%A3%E8%AF%BB\/featured-image.jpg",
                             "width":  1140 ,
                             "height":  570 
-                        }],"genre": "posts","keywords": "dYdX, DeFi, whitepaper","wordcount":  1513 ,
+                        }],"genre": "posts","keywords": "dYdX, DeFi, whitepaper","wordcount":  2618 ,
         "url": "https:\/\/7levy.github.io\/posts\/dydx%E8%A7%A3%E8%AF%BB\/","datePublished": "2021-11-30T08:15:05+08:00","dateModified": "2021-11-30T08:15:05+08:00","publisher": {
             "@type": "Organization",
             "name": "Levy"},"author": {
@@ -124,8 +124,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">dYdX解读系列1—白皮书核心内容</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/7Levy" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Levy</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/defi/"><i class="far fa-folder fa-fw"></i>DeFi</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-30">2021-11-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1513 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-30">2021-11-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2618 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -154,7 +154,7 @@
 <p>白皮书翻译：<a href="https://github.com/7Levy" target="_blank" rel="noopener noreffer">@7Levy</a></p>
 <p>参考链接：</p>
 <ul>
-<li><a href="https://whitepaper.dydx.exchange/" target="_blank" rel="noopener noreffer">dYdX whitepaper-Antonio Juliano</a></li>
+<li><a href="https://whitepaper.dydx.exchange/" target="_blank" rel="noopener noreffer">dYdX whitepaper-Antonio Juliano</a>写</li>
 </ul>
 </blockquote>
 <h2 id="dydx-introduction">dYdX Introduction</h2>
@@ -180,11 +180,125 @@
 <p>当交易者发送一笔包含卖单的交易给合约时，仓位会关闭，这笔卖单以低于或等于抵押金额的价格出售欠贷款方的代币。收到这笔交易后，合约会用外部去中心交易所在订单创建者和其之间执行这笔交易。随后，合约把借出代币的欠款发送给贷款方。欠贷款方的金额包括利息。发送给交易方所有剩余的代币，这等于抵押金和利润。需要注意的是，如果价格和仓位是逆势的，利润可能为负。</p>
 <!--....待翻译-->
 <p><strong>实现</strong></p>
-<ul>
+<ol>
 <li>合约</li>
-</ul>
+</ol>
 <p>对于保证金交易，有三个需要用到的合约：Margin(保证金)合约、Proxy(代理合约)合约以及Vault(金库)合约。</p>
 <p>代理合约用于转移用户资金。用户在代理合约上设置代币津贴，授权代理合约代表他们转移资金。</p>
+<p>保证金合约提供保证金交易的功能。它包含了所有的业务逻辑和公共函数。其同时也包含了合约存储的仓位状态。保证金合约的设计让现有的仓位无法被外部方修改(参考治理部分)。</p>
+<p>金库合约将资金锁仓。它对开提供一个简易的接口，保证金合约有权使用这个接口。</p>
+<p>2.Offering Message</p>
+<p>保证金的第一要素是持有需借出代币的贷方，并且其希望以给定的押金和利率借出。借贷者准备并以如下消息进行加密签名。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">变量名</th>
+<th style="text-align:center">变量类型</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">owedToken</td>
+<td style="text-align:center">address</td>
+<td style="text-align:center">所欠代币的地址-从贷方借得需要还的代币</td>
+</tr>
+<tr>
+<td style="text-align:center">heldToken</td>
+<td style="text-align:center">address</td>
+<td style="text-align:center">持有代币的地址-仓位托管的代币</td>
+</tr>
+<tr>
+<td style="text-align:center">payer</td>
+<td style="text-align:center">address</td>
+<td style="text-align:center">提供贷款资金的地址-如果该地址和签名者不同，假定它是合约的地址并且通过接口获得许可</td>
+</tr>
+<tr>
+<td style="text-align:center">signer</td>
+<td style="text-align:center">address</td>
+<td style="text-align:center">对提供的贷款进行加密签名的地址</td>
+</tr>
+<tr>
+<td style="text-align:center">owner</td>
+<td style="text-align:center">address</td>
+<td style="text-align:center">贷款后拥有款项的地址。所有付款将汇入该地址</td>
+</tr>
+<tr>
+<td style="text-align:center">taker</td>
+<td style="text-align:center">address(optional)</td>
+<td style="text-align:center">如果设置该变量，只有该地址可以贷款</td>
+</tr>
+<tr>
+<td style="text-align:center">feeRecipient</td>
+<td style="text-align:center">address(optional)</td>
+<td style="text-align:center">接受款项相关的中继器手续费的地址</td>
+</tr>
+<tr>
+<td style="text-align:center">lenderFeeToken</td>
+<td style="text-align:center">address(optional)</td>
+<td style="text-align:center">贷方手续费的所属代币地址</td>
+</tr>
+<tr>
+<td style="text-align:center">takerFeeToken</td>
+<td style="text-align:center">address(optional)</td>
+<td style="text-align:center">借方手续费的所属代币地址</td>
+</tr>
+<tr>
+<td style="text-align:center">maxAmount</td>
+<td style="text-align:center">uint256</td>
+<td style="text-align:center">贷款款项的最大金额。以所欠代币为单位计价</td>
+</tr>
+<tr>
+<td style="text-align:center">minAmount</td>
+<td style="text-align:center">uint256</td>
+<td style="text-align:center">贷款款项所能接受的最小金额。以所欠代币为单位计价</td>
+</tr>
+<tr>
+<td style="text-align:center">minHeldToken</td>
+<td style="text-align:center">uint256</td>
+<td style="text-align:center">抵押和售出后锁仓的代币最小金额(基于maxAmount)</td>
+</tr>
+<tr>
+<td style="text-align:center">lenderFee</td>
+<td style="text-align:center">uint256(optional)</td>
+<td style="text-align:center">贷方手续费(基于maxAmount)</td>
+</tr>
+<tr>
+<td style="text-align:center">takerFee</td>
+<td style="text-align:center">uint256(optional)</td>
+<td style="text-align:center">借方手续费(基于maxAmount)</td>
+</tr>
+<tr>
+<td style="text-align:center">interestRate</td>
+<td style="text-align:center">uint32</td>
+<td style="text-align:center">利率(连续复利，以年度百分率表示，最多保留六位小数)</td>
+</tr>
+<tr>
+<td style="text-align:center">interestPeriod</td>
+<td style="text-align:center">uint32(optional)</td>
+<td style="text-align:center">利率周期，每个周期增加利率</td>
+</tr>
+<tr>
+<td style="text-align:center">expirationTimestamp</td>
+<td style="text-align:center">uint32</td>
+<td style="text-align:center">款项到期的时间戳</td>
+</tr>
+<tr>
+<td style="text-align:center">callTimeLimit</td>
+<td style="text-align:center">uint32</td>
+<td style="text-align:center">在贷款方追加保证金后需要关闭仓位的最短时间(按秒计算)</td>
+</tr>
+<tr>
+<td style="text-align:center">maxDuration</td>
+<td style="text-align:center">uint256</td>
+<td style="text-align:center">贷款的最长期限，相对于开仓时间计算</td>
+</tr>
+</tbody>
+</table>
+<p>然后会在交易对手之间进行链下广播该消息。如果交易者愿意，这会成为提交贷款的一个捆绑协议。该协议与用于中继这些已签名消息的交换媒介无关。按照预期这些要约将在作为中继器的中心化平台上列出，并将在利率和条款上展开竞争。较大的OTC交易可以通过传统的方式达成一致，然后使用这个协议进行正式的约束。</p>
+<p>3.Buyer</p>
+<p>保证金交易的第二要素是买单，买单作为保证金交易的一部分来填写。和贷款要约类似，买单可以通过任何方式传输。买方不参与贷款和保证金交易。此订单可以是任何价格，并且必须由交易者选择。唯一的先决条件是订单必须至少与交易者作为保证金交易的一部分出售的代币一样多。选择符合交易者经济利益的最优价格完成买单。</p>
+<p>dYdX允许任何去中心交易所买/卖的标准。通过封装外部的去中心化交易所的智能合约到一个提供保证金接口的合约中来实现。封装的合约叫做ExchangeWrapper。ExchangeWrapper由交易者在保证金交易中指定，无需特殊权限。这意味着任何人都可以编写、部署和使用ExchangeWrapper作为任何去中心化交易所。dYdX实现的第一个ExchangeWrapper是封装的0x交易所合约，允许任何0x的订单在dYdX上建仓。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

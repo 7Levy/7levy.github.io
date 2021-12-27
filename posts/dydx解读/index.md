@@ -7,7 +7,7 @@
 >
 > 参考链接：
 >
-> - [dYdX whitepaper-Antonio Juliano](https://whitepaper.dydx.exchange/)
+> - [dYdX whitepaper-Antonio Juliano](https://whitepaper.dydx.exchange/)写
 >
 >
 
@@ -69,11 +69,49 @@ dYdX保证金交易协议使用了一个主以太坊合约来方便ERC20代币�
 
 **实现**
 
-- 合约
+1. 合约
 
 对于保证金交易，有三个需要用到的合约：Margin(保证金)合约、Proxy(代理合约)合约以及Vault(金库)合约。
 
 代理合约用于转移用户资金。用户在代理合约上设置代币津贴，授权代理合约代表他们转移资金。
+
+保证金合约提供保证金交易的功能。它包含了所有的业务逻辑和公共函数。其同时也包含了合约存储的仓位状态。保证金合约的设计让现有的仓位无法被外部方修改(参考治理部分)。
+
+金库合约将资金锁仓。它对开提供一个简易的接口，保证金合约有权使用这个接口。
+
+2.Offering Message
+
+保证金的第一要素是持有需借出代币的贷方，并且其希望以给定的押金和利率借出。借贷者准备并以如下消息进行加密签名。
+
+|         变量名         |       变量类型        |                    描述                    |
+| :-----------------: | :---------------: | :--------------------------------------: |
+|      owedToken      |      address      |           所欠代币的地址-从贷方借得需要还的代币            |
+|      heldToken      |      address      |             持有代币的地址-仓位托管的代币              |
+|        payer        |      address      | 提供贷款资金的地址-如果该地址和签名者不同，假定它是合约的地址并且通过接口获得许可 |
+|       signer        |      address      |             对提供的贷款进行加密签名的地址              |
+|        owner        |      address      |          贷款后拥有款项的地址。所有付款将汇入该地址           |
+|        taker        | address(optional) |            如果设置该变量，只有该地址可以贷款             |
+|    feeRecipient     | address(optional) |             接受款项相关的中继器手续费的地址             |
+|   lenderFeeToken    | address(optional) |               贷方手续费的所属代币地址               |
+|    takerFeeToken    | address(optional) |               借方手续费的所属代币地址               |
+|      maxAmount      |      uint256      |           贷款款项的最大金额。以所欠代币为单位计价           |
+|      minAmount      |      uint256      |         贷款款项所能接受的最小金额。以所欠代币为单位计价         |
+|    minHeldToken     |      uint256      |       抵押和售出后锁仓的代币最小金额(基于maxAmount)       |
+|      lenderFee      | uint256(optional) |            贷方手续费(基于maxAmount)            |
+|      takerFee       | uint256(optional) |            借方手续费(基于maxAmount)            |
+|    interestRate     |      uint32       |        利率(连续复利，以年度百分率表示，最多保留六位小数)        |
+|   interestPeriod    | uint32(optional)  |              利率周期，每个周期增加利率               |
+| expirationTimestamp |      uint32       |                 款项到期的时间戳                 |
+|    callTimeLimit    |      uint32       |       在贷款方追加保证金后需要关闭仓位的最短时间(按秒计算)        |
+|     maxDuration     |      uint256      |            贷款的最长期限，相对于开仓时间计算             |
+
+然后会在交易对手之间进行链下广播该消息。如果交易者愿意，这会成为提交贷款的一个捆绑协议。该协议与用于中继这些已签名消息的交换媒介无关。按照预期这些要约将在作为中继器的中心化平台上列出，并将在利率和条款上展开竞争。较大的OTC交易可以通过传统的方式达成一致，然后使用这个协议进行正式的约束。
+
+3.Buyer
+
+保证金交易的第二要素是买单，买单作为保证金交易的一部分来填写。和贷款要约类似，买单可以通过任何方式传输。买方不参与贷款和保证金交易。此订单可以是任何价格，并且必须由交易者选择。唯一的先决条件是订单必须至少与交易者作为保证金交易的一部分出售的代币一样多。选择符合交易者经济利益的最优价格完成买单。
+
+dYdX允许任何去中心交易所买/卖的标准。通过封装外部的去中心化交易所的智能合约到一个提供保证金接口的合约中来实现。封装的合约叫做ExchangeWrapper。ExchangeWrapper由交易者在保证金交易中指定，无需特殊权限。这意味着任何人都可以编写、部署和使用ExchangeWrapper作为任何去中心化交易所。dYdX实现的第一个ExchangeWrapper是封装的0x交易所合约，允许任何0x的订单在dYdX上建仓。
 
 
 
