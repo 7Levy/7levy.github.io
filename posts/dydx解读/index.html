@@ -33,7 +33,7 @@
                             "url": "https:\/\/7levy.github.io\/posts\/dydx%E8%A7%A3%E8%AF%BB\/featured-image.jpg",
                             "width":  1140 ,
                             "height":  570 
-                        }],"genre": "posts","keywords": "dYdX, DeFi, whitepaper","wordcount":  2618 ,
+                        }],"genre": "posts","keywords": "dYdX, DeFi, whitepaper","wordcount":  3341 ,
         "url": "https:\/\/7levy.github.io\/posts\/dydx%E8%A7%A3%E8%AF%BB\/","datePublished": "2021-11-30T08:15:05+08:00","dateModified": "2021-11-30T08:15:05+08:00","publisher": {
             "@type": "Organization",
             "name": "Levy"},"author": {
@@ -124,8 +124,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">dYdX解读系列1—白皮书核心内容</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/7Levy" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Levy</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/defi/"><i class="far fa-folder fa-fw"></i>DeFi</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-30">2021-11-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2618 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-30">2021-11-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3341 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -180,14 +180,12 @@
 <p>当交易者发送一笔包含卖单的交易给合约时，仓位会关闭，这笔卖单以低于或等于抵押金额的价格出售欠贷款方的代币。收到这笔交易后，合约会用外部去中心交易所在订单创建者和其之间执行这笔交易。随后，合约把借出代币的欠款发送给贷款方。欠贷款方的金额包括利息。发送给交易方所有剩余的代币，这等于抵押金和利润。需要注意的是，如果价格和仓位是逆势的，利润可能为负。</p>
 <!--....待翻译-->
 <p><strong>实现</strong></p>
-<ol>
-<li>合约</li>
-</ol>
+<p>1.合约</p>
 <p>对于保证金交易，有三个需要用到的合约：Margin(保证金)合约、Proxy(代理合约)合约以及Vault(金库)合约。</p>
 <p>代理合约用于转移用户资金。用户在代理合约上设置代币津贴，授权代理合约代表他们转移资金。</p>
 <p>保证金合约提供保证金交易的功能。它包含了所有的业务逻辑和公共函数。其同时也包含了合约存储的仓位状态。保证金合约的设计让现有的仓位无法被外部方修改(参考治理部分)。</p>
 <p>金库合约将资金锁仓。它对开提供一个简易的接口，保证金合约有权使用这个接口。</p>
-<p>2.Offering Message</p>
+<p>2.Offering Message(供应消息)</p>
 <p>保证金的第一要素是持有需借出代币的贷方，并且其希望以给定的押金和利率借出。借贷者准备并以如下消息进行加密签名。</p>
 <table>
 <thead>
@@ -296,9 +294,31 @@
 </tbody>
 </table>
 <p>然后会在交易对手之间进行链下广播该消息。如果交易者愿意，这会成为提交贷款的一个捆绑协议。该协议与用于中继这些已签名消息的交换媒介无关。按照预期这些要约将在作为中继器的中心化平台上列出，并将在利率和条款上展开竞争。较大的OTC交易可以通过传统的方式达成一致，然后使用这个协议进行正式的约束。</p>
-<p>3.Buyer</p>
+<p>3.Buyer(买方)</p>
 <p>保证金交易的第二要素是买单，买单作为保证金交易的一部分来填写。和贷款要约类似，买单可以通过任何方式传输。买方不参与贷款和保证金交易。此订单可以是任何价格，并且必须由交易者选择。唯一的先决条件是订单必须至少与交易者作为保证金交易的一部分出售的代币一样多。选择符合交易者经济利益的最优价格完成买单。</p>
 <p>dYdX允许任何去中心交易所买/卖的标准。通过封装外部的去中心化交易所的智能合约到一个提供保证金接口的合约中来实现。封装的合约叫做ExchangeWrapper。ExchangeWrapper由交易者在保证金交易中指定，无需特殊权限。这意味着任何人都可以编写、部署和使用ExchangeWrapper作为任何去中心化交易所。dYdX实现的第一个ExchangeWrapper是封装的0x交易所合约，允许任何0x的订单在dYdX上建仓。</p>
+<p>4.Position Opening(开仓)</p>
+<p>交易者给保证金合约发送一笔交易来开仓：</p>
+<ul>
+<li>已签名的贷款要约</li>
+<li>用held token购买owed token的买单</li>
+<li>用来完成买单的ExchangeWrapper合约地址</li>
+<li>交易者希望借入的owed token数量</li>
+<li>一个布尔值，指定交易者是希望用held token还是owed token作为保证金</li>
+<li>交易者指定的保证金数量</li>
+<li>开仓的地址</li>
+</ul>
+<p>当合约接受到交易会进行如下操作：</p>
+<ol>
+<li>验证贷款信息的签名及输入</li>
+<li>Margin合约首先会调用Proxy合约转移保证金，如果保证金是held token那就把它转移到Vault合约，如果是owed token那就把它转移到ExchangeWrapper合约</li>
+<li>保证金合约调用代理合约把所要求数量的owed token从贷方那转移到ExchangeWrapper那</li>
+<li>保证金合约记录贷款的使用信息，存储在mapping中。用这种方式可以记录剩余的贷款和避免他人利用已签名的贷款信息进行重放攻击</li>
+<li>Margin合约调用ExchangeWrapper，根据买单把owed token换成held token。买方作为这笔交易的maker，ExchangeWrapper作为taker。交易合约(如果使用0x的ExchangeWrapper，那就是0x交易合约)会验证买单的签名和输入信息然后执行这笔交易。</li>
+<li>Margin合约调用Proxy合约,把ExchangeWrapper中卖掉后收到的held token转移到Vault合约。在仓位限期内，held token会在Vault合约中被锁定。</li>
+<li>仓位的详情存储在合约里，通过唯一的公共标识进行映射。后续交易者或者贷方可以根据这个标识与仓位进行交互。</li>
+</ol>
+<p>所有的步骤都是原子性的</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
