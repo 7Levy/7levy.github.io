@@ -9,7 +9,7 @@
     <pubDate>Tue, 30 Nov 2021 08:15:05 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB/</guid>
-    <description><![CDATA[本文作者：@7Levy 白皮书翻译：@7Levy 参考链接： dYdX whitepaper-Antonio Juliano写 dYdX Introduction 区块链的兴起让任何人都可以在开放网络上拥有和转移资产，而无需]]></description>
+    <description><![CDATA[本文作者：@7Levy 白皮书翻译：@7Levy 参考链接： dYdX whitepaper-Antonio Juliano dYdX Introduction 区块链的兴起让任何人都可以在开放网络上拥有和转移资产，而无需去信任任何外方]]></description>
 </item><item>
     <title>Uniswap设计与实现</title>
     <link>https://7levy.github.io/posts/uniswap%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/</link>
@@ -38,5 +38,12 @@
     <author>作者</author>
     <guid>https://7levy.github.io/posts/why-web3-matters/</guid>
     <description><![CDATA[原文链接：https://jeiwan.net/posts/flashloan-scam/ 作者：Ivan Kuznetsov 翻译：https://github]]></description>
+</item><item>
+    <title></title>
+    <link>https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</guid>
+    <description><![CDATA[参考链接： web3.py eth-brownie Truffle vs Hardhat vs Brownie — Let’s have a look yearn.finance Brownie? Brownie是一个基于Python的以太坊智能合开发和测试框架。 下面是Medium作者Mir]]></description>
 </item></channel>
 </rss>
