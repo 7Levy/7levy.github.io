@@ -33,7 +33,7 @@
                             "url": "https:\/\/7levy.github.io\/posts\/dydx%E8%A7%A3%E8%AF%BB\/featured-image.jpg",
                             "width":  1140 ,
                             "height":  570 
-                        }],"genre": "posts","keywords": "dYdX, DeFi, whitepaper","wordcount":  6148 ,
+                        }],"genre": "posts","keywords": "dYdX, DeFi, whitepaper","wordcount":  7002 ,
         "url": "https:\/\/7levy.github.io\/posts\/dydx%E8%A7%A3%E8%AF%BB\/","datePublished": "2021-11-30T08:15:05+08:00","dateModified": "2021-11-30T08:15:05+08:00","publisher": {
             "@type": "Organization",
             "name": "Levy"},"author": {
@@ -124,8 +124,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">dYdX解读系列1—白皮书核心内容</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/7Levy" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Levy</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/defi/"><i class="far fa-folder fa-fw"></i>DeFi</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-30">2021-11-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6148 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-30">2021-11-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7002 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 14 分钟&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -350,10 +350,28 @@
 <p><strong>实现</strong></p>
 <p>1.合约</p>
 <p>我们使用三种智能合约来实现期权的发行和功能：Creatot,Proxy和CoverdOption合约。</p>
-<p>Creator负责创建所有的CoverdOption合约。任何人都可以创建一种CoverdOption合约，只要提供以下规范：</p>
+<p>Creator负责创建所有的CoverdOption。任何人都可以创建一种CoverdOption，只要提供以下规范：</p>
 <ul>
-<li>​</li>
+<li>期权的ERC20代币地址(称为base token)</li>
+<li>用来支付执行价格和移除费用的ERC20代币地址(被称为quote token)</li>
+<li>执行价格（分成两个部分以得到base token和quote token之间的汇率）</li>
+<li>有效期</li>
 </ul>
+<p>创建一种类型的CoveredOption仅开放用于出售，并不会发布任何的期权。对于每个输入参数组合，只能存在唯一的期权。</p>
+<p>Proxy合约负载在用户之间转移代币。用户使用ERC20津贴功能去授权Proxy合约转移他们的代币。每一个新的CoverdOption在创建者创建时都会被授权使用Proxy合约转移用户资金。</p>
+<p>CoveredOption合约代表一种特定类型的备兑期权。每一个都实现了ERC20代币接口，以允许期权的股份在发行后可以进行交易和转让。这意味着每个期权都可以像任何ERC20代币一样在交易所进行公开交易。</p>
+<p>2.Issuance(期权发行)</p>
+<p>CoveredOption期权使用0x协议的交换功能以促使新期权的发行。期权可以在有效期内的任意时间点发行。为了发行新的期权，卖家需要广播一个已签名的0x格式消息，指定一下信息：</p>
+<ul>
+<li>立权人(卖家)的地址</li>
+<li>收款人的地址</li>
+<li>立权人提供的base token数额</li>
+<li>购买时，作为溢价支付给立权人的quote token数额</li>
+<li>期权售卖的有效时间</li>
+<li>立权人想要立权的CoveredOption合约地址。这个地址在消息的taker字段指定，因此只有CoveredOption合约才可以进行交易</li>
+</ul>
+<p>立权人必须至少拥有和消息中所指定的一样多的base token，也必须在Proxy合约里设置津贴。买家买入的期权数量可以少于立权人所提供的的数量。在0x的术语里，立权人是交易的maker(挂单)，CoveredOption是交易的taker(吃单)。该消息可以在任何渠道进行发布，但是必须提供指定的售卖。Relayers(中继器)可以在一个期权发行订单簿上列出售卖的期权(和0x协议的relayers类似)。</p>
+<p>当买家们想要购买一个期权，他们需要向CoveredOption合约发送一笔交易，这笔交易包含了消息签名和立权人的广播，</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
