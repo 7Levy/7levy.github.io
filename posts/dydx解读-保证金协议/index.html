@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>dYdX解读系列1—白皮书核心内容 - 叽喳Block</title><meta name="Description" content="人生、技术、投资和这个世界."><meta property="og:title" content="dYdX解读系列1—白皮书核心内容" />
+<meta property="og:description" content="本文作者：@7Levy 白皮书翻译：@7Levy 参考链接： dYdX whitepaper-Antonio Juliano dYdX Introduction 区块链的兴起让任何人都可以在开放网络上拥有和转移资产，而无需去信任任何外方" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/" /><meta property="og:image" content="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/featured-1image.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-30T08:15:05+08:00" />
+<meta property="article:modified_time" content="2021-11-30T08:15:05+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/featured-1image.jpg"/>
+<meta name="twitter:title" content="dYdX解读系列1—白皮书核心内容"/>
+<meta name="twitter:description" content="本文作者：@7Levy 白皮书翻译：@7Levy 参考链接： dYdX whitepaper-Antonio Juliano dYdX Introduction 区块链的兴起让任何人都可以在开放网络上拥有和转移资产，而无需去信任任何外方"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/" /><link rel="prev" href="https://7levy.github.io/posts/uniswap%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" /><link rel="next" href="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E6%9C%9F%E6%9D%83%E5%8D%8F%E8%AE%AE/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "dYdX解读系列1—白皮书核心内容",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/7levy.github.io\/posts\/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/7levy.github.io\/posts\/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE\/featured-image.jpg",
+                            "width":  1140 ,
+                            "height":  570 
+                        }],"genre": "posts","keywords": "dYdX, DeFi, whitepaper","wordcount":  7002 ,
+        "url": "https:\/\/7levy.github.io\/posts\/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE\/","datePublished": "2021-11-30T08:15:05+08:00","dateModified": "2021-11-30T08:15:05+08:00","publisher": {
+            "@type": "Organization",
+            "name": "Levy"},"author": {
+                "@type": "Person",
+                "name": "Levy"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="叽喳Block"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/chain.png"
+        data-srcset="/images/chain.png, /images/chain.png 1.5x, /images/chain.png 2x"
+        data-sizes="auto"
+        alt="/images/chain.png"
+        title="/images/chain.png" /><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入文章名称或内容" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="叽喳Block"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/chain.png"
+        data-srcset="/images/chain.png, /images/chain.png 1.5x, /images/chain.png 2x"
+        data-sizes="auto"
+        alt="/images/chain.png"
+        title="/images/chain.png" /><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入文章名称或内容" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">dYdX解读系列1—白皮书核心内容</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/7Levy" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Levy</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/defi/"><i class="far fa-folder fa-fw"></i>DeFi</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-30">2021-11-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7002 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 14 分钟&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/featured-image.jpg"
+        data-srcset="/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/featured-image.jpg, /posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/featured-image.jpg 1.5x, /posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/featured-image.jpg 2x"
+        data-sizes="auto"
+        alt="/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/featured-image.jpg"
+        title="/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/featured-image.jpg" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#dydx-introduction">dYdX Introduction</a></li>
+    <li><a href="#现有成果">现有成果</a></li>
+    <li><a href="#协议">协议</a>
+      <ul>
+        <li><a href="#保证金交易协议">保证金交易协议</a></li>
+        <li><a href="#期权协议">期权协议</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文作者：<a href="https://github.com/7Levy" target="_blank" rel="noopener noreffer">@7Levy</a></p>
+<p>白皮书翻译：<a href="https://github.com/7Levy" target="_blank" rel="noopener noreffer">@7Levy</a></p>
+<p>参考链接：</p>
+<ul>
+<li><a href="https://whitepaper.dydx.exchange/" target="_blank" rel="noopener noreffer">dYdX whitepaper-Antonio Juliano</a></li>
+</ul>
+</blockquote>
+<h2 id="dydx-introduction">dYdX Introduction</h2>
+<p>区块链的兴起让任何人都可以在开放网络上拥有和转移资产，而无需去信任任何外方。与现有经济体系结构不同的是，区块链在全世界都是自由且同样可用的。这个现象促使了区块链上数字资产的迅猛增长。许多中心化和去中心化的平台旨在促进已存在资产的高效交换，有更多平台正在开发中。这些平台允许投资者持有各种资产的多头头寸。然而，这些平台目前很难甚至是不可能去持有更复杂的头寸。</p>
+<p>dYdX允许创建完全新类别的资产，这些资产可以从基于区块链的底层资产中获利。通过衍生品和保证金交易，投资者们可以用投资组合去实现优秀的风险管理，同时这也开辟了新的投机途径。</p>
+<h2 id="现有成果">现有成果</h2>
+<p>支持衍生品或保证金交易的去中心化协议很少，而且他们都没什么特别重要的用途。中心化交易所们也无法提供足够多的去中心化金融资产。因此，我们很难在现有的大部分去中心化资产上卖空或持有更复杂的头寸。</p>
+<!--....待翻译-->
+<h2 id="协议">协议</h2>
+<p>dYdX包含了一些列协议，指定不同金融产品的操作和执行。我们计划优先开发最广泛流行的类型。我们在下面大概描述了下期权和保证金交易协议的实现。我们计划在未来开发更多的金融产品。</p>
+<h3 id="保证金交易协议">保证金交易协议</h3>
+<p><strong>简介</strong></p>
+<p>在一个保证金交易中，交易者借入一项资产然后立马将其换成另一项资产。资产必须偿还给贷方，通常也连同利息一起。 保证金交易中包括卖空和买多。</p>
+<p>在卖空交易中，某投资者借入一项资产然后以报价货币将其售出。如果资产价格下跌，由于重新买入后去偿还贷方的成本低于初始售价，那么这个投资者就可以从中获利。如果资产价格上涨，由于重新买入后去偿还贷方的成本高于初始售价，那么这个投资者就会亏损。</p>
+<p>在买多交易中，某投资者借入报价货币然后用其买入一项资产。如果价格上涨，投资者获利，如果价格下跌，投资者亏损。持仓的收益或亏损等于标的资产的变化乘以杠杆比例，即借入金额加上交易者支付的金额和交易者支付的金额之比。</p>
+<p><strong>实例</strong></p>
+<p>卖空被投资者用于从下跌的资产中获利，卖空可用于投机和对冲。当投资者们认为某项资产价格会下降时，他们可以将卖空作为投机手段。卖空相关资产去对冲现有的持仓。</p>
+<p>当资产价格上涨时，买多的杠杆用于乘以收益。买多可用于投机，因为其可以使交易人用更少的资金去获得更多的收益。投资者可以使用买多进行更有效的资金分配，因为每项投资实现相同结果所需的资本更少。</p>
+<p>用于保证金头寸的借贷，可以给借贷人带来贷款利息。</p>
+<p><strong>概述</strong></p>
+<p>dYdX保证金交易协议使用了一个主以太坊合约来方便ERC20代币的去中心化保证金交易。贷款方对包含贷款信息(如数量、涉及代币和利率)的消息进行签名，以此来为保证金交易提供贷款。这些贷款可以在非区块链平台上传输和上市。</p>
+<p>交易者通过向dYdX保证金合约发送一笔包含贷款要约、借入代币的买单和要借入的金额的交易来建仓。一旦接收到这笔交易，该智能合约将保证金从交易者转移到自己的地址上，然后在外部的去中心化交易所(0x等)使用指定的买单将借出的代币售出。合约在头寸有效期内会保留押金和出售借贷代币所获得的的代币。</p>
+<p>当交易者发送一笔包含卖单的交易给合约时，仓位会关闭，这笔卖单以低于或等于抵押金额的价格出售欠贷款方的代币。收到这笔交易后，合约会用外部去中心交易所在订单创建者和其之间执行这笔交易。随后，合约把借出代币的欠款发送给贷款方。欠贷款方的金额包括利息。发送给交易方所有剩余的代币，这等于抵押金和利润。需要注意的是，如果价格和仓位是逆势的，利润可能为负。</p>
+<!--....待翻译-->
+<p><strong>实现</strong></p>
+<p>1.合约</p>
+<p>对于保证金交易，有三个需要用到的合约：Margin(保证金)合约、Proxy(代理合约)合约以及Vault(金库)合约。</p>
+<p>代理合约用于转移用户资金。用户在代理合约上设置代币津贴，授权代理合约代表他们转移资金。</p>
+<p>保证金合约提供保证金交易的功能。它包含了所有的业务逻辑和公共函数。其同时也包含了合约存储的仓位状态。保证金合约的设计让现有的仓位无法被外部方修改(参考治理部分)。</p>
+<p>金库合约将资金锁仓。它对开提供一个简易的接口，保证金合约有权使用这个接口。</p>
+<p>2.Offering Message</p>
+<p>保证金的第一要素是持有需借出代币的贷方，并且其希望以给定的押金和利率借出。借贷者准备并以如下消息进行加密签名。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">变量名</th>
+<th style="text-align:center">变量类型</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">owedToken</td>
+<td style="text-align:center">address</td>
+<td style="text-align:center">所欠代币的地址-从贷方借得需要还的代币</td>
+</tr>
+<tr>
+<td style="text-align:center">heldToken</td>
+<td style="text-align:center">address</td>
+<td style="text-align:center">持有代币的地址-仓位托管的代币</td>
+</tr>
+<tr>
+<td style="text-align:center">payer</td>
+<td style="text-align:center">address</td>
+<td style="text-align:center">提供贷款资金的地址-如果该地址和签名者不同，假定它是合约的地址并且通过接口获得许可</td>
+</tr>
+<tr>
+<td style="text-align:center">signer</td>
+<td style="text-align:center">address</td>
+<td style="text-align:center">对提供的贷款进行加密签名的地址</td>
+</tr>
+<tr>
+<td style="text-align:center">owner</td>
+<td style="text-align:center">address</td>
+<td style="text-align:center">贷款后拥有款项的地址。所有付款将汇入该地址</td>
+</tr>
+<tr>
+<td style="text-align:center">taker</td>
+<td style="text-align:center">address(optional)</td>
+<td style="text-align:center">如果设置该变量，只有该地址可以贷款</td>
+</tr>
+<tr>
+<td style="text-align:center">feeRecipient</td>
+<td style="text-align:center">address(optional)</td>
+<td style="text-align:center">接受款项相关的中继器手续费的地址</td>
+</tr>
+<tr>
+<td style="text-align:center">lenderFeeToken</td>
+<td style="text-align:center">address(optional)</td>
+<td style="text-align:center">贷方手续费的所属代币地址</td>
+</tr>
+<tr>
+<td style="text-align:center">takerFeeToken</td>
+<td style="text-align:center">address(optional)</td>
+<td style="text-align:center">借方手续费的所属代币地址</td>
+</tr>
+<tr>
+<td style="text-align:center">maxAmount</td>
+<td style="text-align:center">uint256</td>
+<td style="text-align:center">贷款款项的最大金额。以所欠代币为单位计价</td>
+</tr>
+<tr>
+<td style="text-align:center">minAmount</td>
+<td style="text-align:center">uint256</td>
+<td style="text-align:center">贷款款项所能接受的最小金额。以所欠代币为单位计价</td>
+</tr>
+<tr>
+<td style="text-align:center">minHeldToken</td>
+<td style="text-align:center">uint256</td>
+<td style="text-align:center">抵押和售出后锁仓的代币最小金额(基于maxAmount)</td>
+</tr>
+<tr>
+<td style="text-align:center">lenderFee</td>
+<td style="text-align:center">uint256(optional)</td>
+<td style="text-align:center">贷方手续费(基于maxAmount)</td>
+</tr>
+<tr>
+<td style="text-align:center">takerFee</td>
+<td style="text-align:center">uint256(optional)</td>
+<td style="text-align:center">借方手续费(基于maxAmount)</td>
+</tr>
+<tr>
+<td style="text-align:center">interestRate</td>
+<td style="text-align:center">uint32</td>
+<td style="text-align:center">利率(连续复利，以年度百分率表示，最多保留六位小数)</td>
+</tr>
+<tr>
+<td style="text-align:center">interestPeriod</td>
+<td style="text-align:center">uint32(optional)</td>
+<td style="text-align:center">利率周期，每个周期增加利率</td>
+</tr>
+<tr>
+<td style="text-align:center">expirationTimestamp</td>
+<td style="text-align:center">uint32</td>
+<td style="text-align:center">款项到期的时间戳</td>
+</tr>
+<tr>
+<td style="text-align:center">callTimeLimit</td>
+<td style="text-align:center">uint32</td>
+<td style="text-align:center">在贷款方追加保证金后需要关闭仓位的最短时间(按秒计算)</td>
+</tr>
+<tr>
+<td style="text-align:center">maxDuration</td>
+<td style="text-align:center">uint256</td>
+<td style="text-align:center">贷款的最长期限，相对于开仓时间计算</td>
+</tr>
+</tbody>
+</table>
+<p>然后会在交易对手之间进行链下广播该消息。如果交易者愿意，这会成为提交贷款的一个捆绑协议。该协议与用于中继这些已签名消息的交换媒介无关。按照预期这些要约将在作为中继器的中心化平台上列出，并将在利率和条款上展开竞争。较大的OTC交易可以通过传统的方式达成一致，然后使用这个协议进行正式的约束。</p>
+<p>3.Buyer</p>
+<p>保证金交易的第二要素是买单，买单作为保证金交易的一部分来填写。和贷款要约类似，买单可以通过任何方式传输。买方不参与贷款和保证金交易。此订单可以是任何价格，并且必须由交易者选择。唯一的先决条件是订单必须至少与交易者作为保证金交易的一部分出售的代币一样多。选择符合交易者经济利益的最优价格完成买单。</p>
+<p>dYdX允许任何去中心交易所买/卖的标准。通过封装外部的去中心化交易所的智能合约到一个提供保证金接口的合约中来实现。封装的合约叫做ExchangeWrapper。ExchangeWrapper由交易者在保证金交易中指定，无需特殊权限。这意味着任何人都可以编写、部署和使用ExchangeWrapper作为任何去中心化交易所。dYdX实现的第一个ExchangeWrapper是封装的0x交易所合约，允许任何0x的订单在dYdX上建仓。</p>
+<p>4.Position Opening</p>
+<p>交易者给保证金合约发送一笔交易来开仓：</p>
+<ul>
+<li>已签名的贷款要约</li>
+<li>用held token购买owed token的买单</li>
+<li>用来完成买单的ExchangeWrapper合约地址</li>
+<li>交易者希望借入的owed token数量</li>
+<li>一个布尔值，指定交易者是希望用held token还是owed token作为保证金</li>
+<li>交易者指定的保证金数量</li>
+<li>开仓的地址</li>
+</ul>
+<p>当合约接受到交易会进行如下操作：</p>
+<ol>
+<li>验证贷款信息的签名及输入</li>
+<li>Margin合约首先会调用Proxy合约转移保证金，如果保证金是held token那就把它转移到Vault合约，如果是owed token那就把它转移到ExchangeWrapper合约</li>
+<li>保证金合约调用代理合约把所要求数量的owed token从贷方那转移到ExchangeWrapper那</li>
+<li>保证金合约记录贷款的使用信息，存储在mapping中。用这种方式可以记录剩余的贷款和避免他人利用已签名的贷款信息进行重放攻击</li>
+<li>Margin合约调用ExchangeWrapper，根据买单把owed token换成held token。买方作为这笔交易的maker，ExchangeWrapper作为taker。交易合约(如果使用0x的ExchangeWrapper，那就是0x交易合约)会验证买单的签名和输入信息然后执行这笔交易。</li>
+<li>Margin合约调用Proxy合约,把ExchangeWrapper中卖掉后收到的held token转移到Vault合约。在仓位限期内，held token会在Vault合约中被锁定。</li>
+<li>仓位的详情存储在合约里，通过唯一的公共标识进行映射。后续交易者或者贷方可以根据这个标识与仓位进行交互。</li>
+</ol>
+<p>所有的步骤都是原子性的，也就是说这些步骤只能是全部成功或者全部失败。最后，Vault合约中会持有一定数量的held token。如果保证金是held token，数额等于保证金数额加卖出owed token获得的held token的数额。如果保证金是owed token，数额等于卖出借来的owed token与保证金(此时是owed token)得到的held token数额。Vault合约在仓位关闭前会一直锁定资金。</p>
+<p>5.Closing</p>
+<p>交易者可以在任何时间对部分仓位进行平仓。向Margin合约发送一个卖单，卖单指定卖出held token的数额，只要数额大于或等于欠贷方的owed token数量。卖单可以使任何价格，只要仓位有足够的held token(根据平仓部分占的比例来分配)清算，交易者可以选择最低的价格使得利益最大化。</p>
+<p>当Margin合约收到这笔交易，会执行如下操作：</p>
+<ol>
+<li>计算欠贷方的owed token总额，使用连续复利的方式计算利息</li>
+<li>如果用held token归还，Margin合约调用ExchangeWrapper根据所欠的owed token数额来归还held token；如果用owed token归还，则卖出所有的held token，买入owed token。交易过后，Vault合约会持有所欠数额的owed token和一定数量的held token或是owed token，总额等于保证金和利润(可能为负)。</li>
+<li>Margin合约调用Proxy合约将所欠数额的owed token从ExchangeWrapper转移到贷方。</li>
+<li>Margin发送等于保证金+利润数额的held token或owed token给交易者。</li>
+<li>如果当前仓位价值为0，Margin会从存储中删除该仓位；如果价值不为0，则根据关闭的仓位大小来减少数额。</li>
+</ol>
+<p>在保证金交易结束后，交易者获得利润，利润以held token或是owed token结算。贷方根据owed token计算利息。Margin和Vault合约最终根据需要实现网络中立性。</p>
+<p>6.Calling</p>
+<p>保证金也可以用另一种方式结算，由贷方或者是贷方授权的第三方从交易者收取贷款。贷方或是贷方授权的第三方向Margin合约发送一笔交易表示正在收取贷款，同时贷方指定交易者必须向存入的held token以此来取消合约调用。发送完这笔交易后，交易者在最初指定的还款时限内(调用时间限制)中去偿还贷款，或者是追加额外的held token。交易者使用上述类似的部分过程平仓。如果交易者平仓失败或者是无法提供所需的额外的保证金，贷方有权收回仓位里的全部held token余额。</p>
+<p>当相对于held token的owed token价格上涨至仓位的held token价格位置，此几乎不足以回购owed token，这是最符合贷方利益的时候。这意味着贷方或者是被授权的第三方，需要一直盯盘并在价格上涨时，准备平仓。被授权方很大可能是中继器或服务，观察价格并随时准备按根据价格变动自动收回贷款。授权可信方的方式功能类似使用中心化语言机去决定何时产生保证金追加通知。然而授权可信方的方式效率更高，因为不需要为不断更新的价格支付gas，并且可以实时有效地观察价格，而不是每个区块刷新一次。</p>
+<p>这种方式也需要交易者一直在线，并且可以在有限期内发送交易去平仓，否则就会爆仓。为了避免交易者需要一直在线的问题，交易者可以选择外部的合约，该合约可以代表他们自动且无需信任地平仓。自动平仓合约使用荷兰拍卖式的方式，用held token来回购欠贷方的owed token，在限期内held token从0开始，线性增长至仓位里的全部数额的held token。任何多余的held token都会返还给交易者。任何人都可以在拍卖中出价，或者使用一个现有的去中心化交易所购买owed token并保持价差。当拍卖价格超过市场价格，每个人都会有去竞标的动机，这导致了交易者以市场价格成交。</p>
+<p><strong>风险</strong></p>
+<p>对于交易者来说的其中一个风险就是即使存入足够的保证金，贷方也想要收回贷款。当前非区块链相关的金融系统使用信誉系统来识别不会提早回收贷款的最优贷方。dYdX的信誉系统可以完全独立于基础协议，因为交易者更喜欢从评级较高的贷方那借贷，并将其纳入是否贷款的决定中。另外一种解决方法是使用交易者和贷方都相互信任的授权方去追加保证金。将来，还可以使用去中心的价格语言机。</p>
+<p>对于贷方的风险(除了持有owed token的经济风险)是owed token相对于held token的价格上涨过快，交易者还没有追加保证金，仓位中的held token就已经不足以回购所欠的owed token代币了。在这种情况下，贷方可以收到交易者仓位的全部held token，但还是持有owed token更好。可以通过设置足够高的抵押金，足够低的催收时间和使用有效地催缴机制(例如通过链下的监控)来降低贷方的风险。</p>
+<h3 id="期权协议">期权协议</h3>
+<p><strong>简介</strong></p>
+<p>在一个期权中，资产持有人以指定的期权执行价格与未来日期去出售购买或出售该资产的权利。购买资产被称为看涨期权，售出资产被称为看跌期权。期权的卖方(立权人)在出售中收取溢价，但如果期权持有人愿意，那就必须以约定的价格和日期去出售或购买资产。备兑期权指的是将标的资产作为抵押品，因此可以保证未来某个日期收回。期权本身可以在公开市场上交易。我们描述了一种美式备兑期权的实现，或者是一种可以在截止期之前随时执行的期权。</p>
+<p><strong>实例</strong></p>
+<p>期权支持多种交易策略，这些策略可以用于投机和风险管理。</p>
+<p>期权可以为投机提供额外的杠杆。举个例子，假设AAPL的价格现在是100美金，有一个投资者投资了1000美金的AAPL并相信其会上涨。投资者可以一100美金的单价购买十股，如果价格涨到110美金，这时候售出，那么就会获得100美金的本金和10%的利润。假设投资者买了执行价为100美金，溢价为2美金的看涨期权。投资者可以买入500个这些期权。如果AAPL价格再次上涨到110美金，投资者可以行使期权以100美金的价格买入AAPL，然后立刻在110美金的价位卖出这些AAPL，每份期权获利10美金。因为投资者必须为每份期权付2美金的溢价，所以对于每份期权来说，最终会是8美金的利润。这意味着投资者的利润会是4000美金，也就是400%的回报。这表明投资者如何利用期权获得比简单持有资产更高的回报。</p>
+<p>期权也可以对冲或降低投资风险。假设投资者做多100股AAPL，再次以100美金单价成交。投资者可以以90美金单价购得看跌期权，每份溢价2美金。这种期权会确保仅收取2%的费用，在期权有效期内，投资者的损失不会超过10%。</p>
+<p>期权也可以支持更多的交易策略，如跨式、勒式、领式等。这类策略可以锁定价格，从任何方向的波动中获利，或者是从资产的稳定价格中获利。</p>
+<p><strong>概述</strong></p>
+<p><strong>实现</strong></p>
+<p>1.合约</p>
+<p>我们使用三种智能合约来实现期权的发行和功能：Creatot,Proxy和CoverdOption合约。</p>
+<p>Creator负责创建所有的CoverdOption。任何人都可以创建一种CoverdOption，只要提供以下规范：</p>
+<ul>
+<li>期权的ERC20代币地址(称为base token)</li>
+<li>用来支付执行价格和移除费用的ERC20代币地址(被称为quote token)</li>
+<li>执行价格（分成两个部分以得到base token和quote token之间的汇率）</li>
+<li>有效期</li>
+</ul>
+<p>创建一种类型的CoveredOption仅开放用于出售，并不会发布任何的期权。对于每个输入参数组合，只能存在唯一的期权。</p>
+<p>Proxy合约负载在用户之间转移代币。用户使用ERC20津贴功能去授权Proxy合约转移他们的代币。每一个新的CoverdOption在创建者创建时都会被授权使用Proxy合约转移用户资金。</p>
+<p>CoveredOption合约代表一种特定类型的备兑期权。每一个都实现了ERC20代币接口，以允许期权的股份在发行后可以进行交易和转让。这意味着每个期权都可以像任何ERC20代币一样在交易所进行公开交易。</p>
+<p>2.Issuance(期权发行)</p>
+<p>CoveredOption期权使用0x协议的交换功能以促使新期权的发行。期权可以在有效期内的任意时间点发行。为了发行新的期权，卖家需要广播一个已签名的0x格式消息，指定一下信息：</p>
+<ul>
+<li>立权人(卖家)的地址</li>
+<li>收款人的地址</li>
+<li>立权人提供的base token数额</li>
+<li>购买时，作为溢价支付给立权人的quote token数额</li>
+<li>期权售卖的有效时间</li>
+<li>立权人想要立权的CoveredOption合约地址。这个地址在消息的taker字段指定，因此只有CoveredOption合约才可以进行交易</li>
+</ul>
+<p>立权人必须至少拥有和消息中所指定的一样多的base token，也必须在Proxy合约里设置津贴。买家买入的期权数量可以少于立权人所提供的的数量。在0x的术语里，立权人是交易的maker(挂单)，CoveredOption是交易的taker(吃单)。该消息可以在任何渠道进行发布，但是必须提供指定的售卖。Relayers(中继器)可以在一个期权发行订单簿上列出售卖的期权(和0x协议的relayers类似)。</p>
+<p>当买家们想要购买一个期权，他们需要向CoveredOption合约发送一笔交易，这笔交易包含了消息签名和立权人的广播，</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-30</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/" data-title="dYdX解读系列1—白皮书核心内容" data-hashtags="dYdX,DeFi,whitepaper"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/" data-hashtag="dYdX"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Linkedin" data-sharer="linkedin" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/" data-title="dYdX解读系列1—白皮书核心内容" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/" data-title="dYdX解读系列1—白皮书核心内容"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/" data-title="dYdX解读系列1—白皮书核心内容" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/" data-title="dYdX解读系列1—白皮书核心内容"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/dydx/">dYdX</a>,&nbsp;<a href="/tags/defi/">DeFi</a>,&nbsp;<a href="/tags/whitepaper/">whitepaper</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/uniswap%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" class="prev" rel="prev" title="Uniswap设计与实现"><i class="fas fa-angle-left fa-fw"></i>Uniswap设计与实现</a>
+            <a href="/posts/dydx%E8%A7%A3%E8%AF%BB-%E6%9C%9F%E6%9D%83%E5%8D%8F%E8%AE%AE/" class="next" rel="next" title="dYdX白皮书解读—期权协议">dYdX白皮书解读—期权协议<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">我们绝不倒下.让刽子手显得高大.好阻挡那自由的风</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Levy</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"叽喳Block","id-2":"叽喳Block"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":0,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

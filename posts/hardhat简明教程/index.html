@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Hardhat简明教程 - 叽喳Block</title><meta name="Description" content="人生、技术、投资和这个世界."><meta property="og:title" content="Hardhat简明教程" />
+<meta property="og:description" content="环境配置 安装yarn 1 2 npm install -g yarn yarn --version 安装hardhat 1 yarn add -D hardhat #写入当前目录的devDependencies 安装依赖 1 npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers 创建" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://7levy.github.io/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" /><meta property="og:image" content="https://7levy.github.io/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-20T12:11:05+08:00" />
+<meta property="article:modified_time" content="2021-11-20T12:11:05+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://7levy.github.io/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg"/>
+<meta name="twitter:title" content="Hardhat简明教程"/>
+<meta name="twitter:description" content="环境配置 安装yarn 1 2 npm install -g yarn yarn --version 安装hardhat 1 yarn add -D hardhat #写入当前目录的devDependencies 安装依赖 1 npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers 创建"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://7levy.github.io/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" /><link rel="prev" href="https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" /><link rel="next" href="https://7levy.github.io/posts/analysis-of-a-technical-smart-contract-scam/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Hardhat简明教程",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/7levy.github.io\/posts\/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/7levy.github.io\/posts\/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B\/featured-image.jpg",
+                            "width":  2400 ,
+                            "height":  1250 
+                        }],"genre": "posts","keywords": "solidity, ethereum","wordcount":  1326 ,
+        "url": "https:\/\/7levy.github.io\/posts\/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B\/","datePublished": "2021-11-20T12:11:05+08:00","dateModified": "2021-11-20T12:11:05+08:00","publisher": {
+            "@type": "Organization",
+            "name": "Levy"},"author": {
+                "@type": "Person",
+                "name": "Levy"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="叽喳Block"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/chain.png"
+        data-srcset="/images/chain.png, /images/chain.png 1.5x, /images/chain.png 2x"
+        data-sizes="auto"
+        alt="/images/chain.png"
+        title="/images/chain.png" /><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入文章名称或内容" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="叽喳Block"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/chain.png"
+        data-srcset="/images/chain.png, /images/chain.png 1.5x, /images/chain.png 2x"
+        data-sizes="auto"
+        alt="/images/chain.png"
+        title="/images/chain.png" /><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入文章名称或内容" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Hardhat简明教程</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/7Levy" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Levy</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/sc/"><i class="far fa-folder fa-fw"></i>sc</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-20">2021-11-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1326 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg"
+        data-srcset="/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg, /posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg 1.5x, /posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg 2x"
+        data-sizes="auto"
+        alt="/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg"
+        title="/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#环境配置">环境配置</a>
+      <ul>
+        <li><a href="#安装yarn">安装yarn</a></li>
+        <li><a href="#安装hardhat">安装hardhat</a></li>
+        <li><a href="#安装依赖">安装依赖</a></li>
+      </ul>
+    </li>
+    <li><a href="#创建项目">创建项目</a>
+      <ul>
+        <li><a href="#初始化项目">初始化项目</a></li>
+        <li><a href="#验证项目">验证项目</a></li>
+        <li><a href="#项目结构">项目结构</a></li>
+      </ul>
+    </li>
+    <li><a href="#编译项目">编译项目</a>
+      <ul>
+        <li><a href="#修改编译器版本">修改编译器版本</a></li>
+        <li><a href="#编译源码">编译源码</a></li>
+        <li><a href="#清除缓存与编译">清除缓存与编译</a></li>
+        <li><a href="#artifacts">artifacts</a></li>
+      </ul>
+    </li>
+    <li><a href="#控制台">控制台</a></li>
+    <li><a href="#合约测试">合约测试</a>
+      <ul>
+        <li><a href="#测试脚本">测试脚本</a></li>
+        <li><a href="#hardhat-network运行测试">Hardhat Network运行测试</a></li>
+        <li><a href="#ganache测试">Ganache测试</a></li>
+        <li><a href="#测试网络部署">测试网络部署</a></li>
+      </ul>
+    </li>
+    <li><a href="#合约部署">合约部署</a>
+      <ul>
+        <li><a href="#部署脚本">部署脚本</a></li>
+        <li><a href="#本地网络部署">本地网络部署</a></li>
+        <li><a href="#ganache部署">Ganache部署</a></li>
+        <li><a href="#测试网络部署-1">测试网络部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="环境配置">环境配置</h2>
+<h3 id="安装yarn">安装yarn</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">npm install -g yarn
+yarn --version
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="安装hardhat">安装hardhat</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yarn add -D hardhat #写入当前目录的devDependencies 
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="安装依赖">安装依赖</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="创建项目">创建项目</h2>
+<h3 id="初始化项目">初始化项目</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yarn hardhat
+888    888                      888 888               888
+888    888                      888 888               888
+888    888                      888 888               888
+8888888888  8888b.  888d888 .d88888 88888b.   8888b.  888888
+888    888     &#34;88b 888P&#34;  d88&#34; 888 888 &#34;88b     &#34;88b 888
+888    888 .d888888 888    888  888 888  888 .d888888 888
+888    888 888  888 888    Y88b 888 888  888 888  888 Y88b.
+888    888 &#34;Y888888 888     &#34;Y88888 888  888 &#34;Y888888  &#34;Y888
+
+Welcome to Hardhat v2.8.0
+
+? What do you want to do? ...
+&gt; Create a basic sample project #示例项目
+  Create an advanced sample project
+  Create an advanced sample project that uses TypeScript
+  Create an empty hardhat.config.js #纯净项目
+  Quit
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="验证项目">验证项目</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yarn hardhat
+Hardhat version 2.8.0
+
+Usage: hardhat [GLOBAL OPTIONS] &lt;TASK&gt; [TASK OPTIONS]
+
+GLOBAL OPTIONS:
+
+  --config              A Hardhat config file.
+  --emoji               Use emoji in messages.
+  --help                Shows this message, or a task&#39;s help if its name is provided
+  --max-memory          The maximum amount of memory that Hardhat can use.
+  --network             The network to connect to.
+  --show-stack-traces   Show stack traces.
+  --tsconfig            A TypeScript config file.
+  --verbose             Enables Hardhat verbose logging
+  --version             Shows hardhat&#39;s version.
+
+
+AVAILABLE TASKS:
+
+  accounts      Prints the list of accounts
+  check         Check whatever you need
+  clean         Clears the cache and deletes all artifacts
+  compile       Compiles the entire project, building all artifacts
+  console       Opens a hardhat console
+  flatten       Flattens and prints contracts and their dependencies
+  help          Prints this message
+  node          Starts a JSON-RPC server on top of Hardhat Network
+  run           Runs a user-defined script after compiling the project
+  test          Runs mocha tests
+
+To get help for a specific task run: npx hardhat help [task]
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="项目结构">项目结构</h3>
+<p><code>contracts</code>:合约源文件</p>
+<p><code>scripts</code>:合约部署、交互等自动化脚本</p>
+<p><code>hardhat.config.js</code>:hardhat配置文件</p>
+<p><code>test</code>:合约测试文件</p>
+<h2 id="编译项目">编译项目</h2>
+<h3 id="修改编译器版本">修改编译器版本</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">module.exports = {
+  solidity: &#34;0.8.10&#34;,
+};
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="编译源码">编译源码</h3>
+<p>编译<code>contracts/</code>下的源文件，如果非初次编译，那么会编译受影响的文件和相关文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yarn hardhat compile
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="清除缓存与编译">清除缓存与编译</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yarn hardhat clean
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="artifacts">artifacts</h3>
+<p><code>artifacts</code>:存放编译合约后生成的文件</p>
+<ul>
+<li><code>contractName</code>:合约名称</li>
+<li><code>abi</code>:abi的json描述</li>
+<li><code>bytecode</code>:0x前缀的十六进制字节码，如果不可部署，则为&quot;0x&quot;\，运行时字节码和创建字节码的总称</li>
+<li><code>depoyedBytecode</code>:运行时字节码</li>
+</ul>
+<h2 id="控制台">控制台</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yarn hardhat console
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="合约测试">合约测试</h2>
+<p>合约测试使用waffle框架，其整合了ether.js、mocha、chai。测试会执行<code>test/</code>下的测试脚本</p>
+<h3 id="测试脚本">测试脚本</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="p">{</span> <span class="nx">expect</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;chai&#34;</span><span class="p">);</span>  <span class="c1">//chai断言库
+</span><span class="c1"></span><span class="kr">const</span> <span class="p">{</span> <span class="nx">ethers</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;hardhat&#34;</span><span class="p">);</span> <span class="c1">//加载hardhat库
+</span><span class="c1"></span>
+<span class="c1">//遵循mocha标准测试结构
+</span><span class="c1"></span><span class="nx">describe</span><span class="p">(</span><span class="s2">&#34;Greeter&#34;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s2">&#34;Should return the new greeting once it&#39;s changed&#34;</span><span class="p">,</span> <span class="kr">async</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 获得自定义地址
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="p">[</span><span class="nx">owner</span><span class="p">,</span><span class="nx">addr1</span><span class="p">]</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">getSigner</span><span class="p">();</span>
+    <span class="c1">// Promise异步-获取合约的实例工厂
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">Greeter</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">getContractFactory</span><span class="p">(</span><span class="s2">&#34;Greeter&#34;</span><span class="p">);</span>
+    <span class="c1">// Promise异步-传入参数初始化合约，获取实例
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">greeter</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">Greeter</span><span class="p">.</span><span class="nx">deploy</span><span class="p">(</span><span class="s2">&#34;Hello, world!&#34;</span><span class="p">);</span>
+    <span class="c1">// Promise异步-等待部署成功
+</span><span class="c1"></span>    <span class="kr">await</span> <span class="nx">greeter</span><span class="p">.</span><span class="nx">deployed</span><span class="p">();</span>
+    <span class="c1">// 调用greet()方法,通过chai断言
+</span><span class="c1"></span>    <span class="nx">expect</span><span class="p">(</span><span class="kr">await</span> <span class="nx">greeter</span><span class="p">.</span><span class="nx">greet</span><span class="p">()).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s2">&#34;Hello, world!&#34;</span><span class="p">);</span>
+    <span class="c1">// 调用setGreeting方法
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">setGreetingTx</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">greeter</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">addr1</span><span class="p">).</span><span class="nx">setGreeting</span><span class="p">(</span><span class="s2">&#34;Hola, levy!&#34;</span><span class="p">);</span>
+    <span class="c1">// wait until the transaction is mined
+</span><span class="c1"></span>    <span class="kr">await</span> <span class="nx">setGreetingTx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+    <span class="c1">// 判断设置的值是否正确
+</span><span class="c1"></span>    <span class="nx">expect</span><span class="p">(</span><span class="kr">await</span> <span class="nx">greeter</span><span class="p">.</span><span class="nx">greet</span><span class="p">()).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s2">&#34;Hola, levy!&#34;</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="hardhat-network运行测试">Hardhat Network运行测试</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yarn hardhat test
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="ganache测试">Ganache测试</h3>
+<p>安装ganache plugin</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">npm install --save-dev @nomiclabs/hardhat-ganache
+</code></pre></td></tr></table>
+</div>
+</div><p>在hardhat.config.js加入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">require(&#34;@nomiclabs/hardhat-ganache&#34;);
+</code></pre></td></tr></table>
+</div>
+</div><p>部署</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yarn hardhat --network ganache test
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="测试网络部署">测试网络部署</h3>
+<h2 id="合约部署">合约部署</h2>
+<h3 id="部署脚本">部署脚本</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// We get the contract to deploy
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">Greeter</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">getContractFactory</span><span class="p">(</span><span class="s2">&#34;Greeter&#34;</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">greeter</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">Greeter</span><span class="p">.</span><span class="nx">deploy</span><span class="p">(</span><span class="s2">&#34;Hello, Hardhat!&#34;</span><span class="p">);</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Greeter deployed to:&#34;</span><span class="p">,</span> <span class="nx">greeter</span><span class="p">.</span><span class="nx">address</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">main</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+    <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="本地网络部署">本地网络部署</h3>
+<p>先启用一个本地网络</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yarn hardhat node
+</code></pre></td></tr></table>
+</div>
+</div><p>另启一个终端，部署在本地网络中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yarn hardhat run --network localhost scripts/deploy.js
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="ganache部署">Ganache部署</h3>
+<p>安装ganache plugin</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">npm install --save-dev @nomiclabs/hardhat-ganache
+</code></pre></td></tr></table>
+</div>
+</div><p>在hardhat.config.js加入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">require(&#34;@nomiclabs/hardhat-ganache&#34;);
+</code></pre></td></tr></table>
+</div>
+</div><p>部署</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yarn hardhat run --network ganache scripts/deploy.js
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="测试网络部署-1">测试网络部署</h3>
+<p>在<a href="https://infura.io/" target="_blank" rel="noopener noreffer">infura</a>注册以太坊网关，用于访问链上网络</p>
+<p>在hardhat.config.js中配置网络</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">networks: {
+    hardhat: {
+    },
+    rinkeby: {
+      url: &#34;&lt;infura_api&gt;&#34;,
+      accounts: [privateKey1, privateKey2, ...]
+    }
+  },
+</code></pre></td></tr></table>
+</div>
+</div><p>部署</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yarn hardhat run --network &lt;your-network&gt; scripts/deploy.js
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-20</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://7levy.github.io/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" data-title="Hardhat简明教程" data-hashtags="solidity,ethereum"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://7levy.github.io/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" data-hashtag="solidity"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Linkedin" data-sharer="linkedin" data-url="https://7levy.github.io/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://7levy.github.io/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" data-title="Hardhat简明教程" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://7levy.github.io/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://7levy.github.io/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" data-title="Hardhat简明教程"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://7levy.github.io/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" data-title="Hardhat简明教程" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://7levy.github.io/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" data-title="Hardhat简明教程"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/solidity/">solidity</a>,&nbsp;<a href="/tags/ethereum/">ethereum</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" class="prev" rel="prev" title="Brownie简明教程"><i class="fas fa-angle-left fa-fw"></i>Brownie简明教程</a>
+            <a href="/posts/analysis-of-a-technical-smart-contract-scam/" class="next" rel="next" title="Analysis of a technical smart contract scam-一起智能合约骗局剖析">Analysis of a technical smart contract scam-一起智能合约骗局剖析<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">我们绝不倒下.让刽子手显得高大.好阻挡那自由的风</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Levy</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"叽喳Block","id-2":"叽喳Block"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":0,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

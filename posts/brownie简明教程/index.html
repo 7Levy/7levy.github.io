@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Brownie简明教程 - 叽喳Block</title><meta name="Description" content="人生、技术、投资和这个世界."><meta property="og:title" content="Brownie简明教程" />
+<meta property="og:description" content="参考链接： web3.py eth-brownie Truffle vs Hardhat vs Brownie — Let’s have a look yearn.finance Brownie? Brownie是一个基于Python的以太坊智能合开发和测试框架。 下面是Medium作者Mir" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" /><meta property="og:image" content="https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-15T12:13:05+08:00" />
+<meta property="article:modified_time" content="2021-11-15T12:13:05+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg"/>
+<meta name="twitter:title" content="Brownie简明教程"/>
+<meta name="twitter:description" content="参考链接： web3.py eth-brownie Truffle vs Hardhat vs Brownie — Let’s have a look yearn.finance Brownie? Brownie是一个基于Python的以太坊智能合开发和测试框架。 下面是Medium作者Mir"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" /><link rel="prev" href="https://7levy.github.io/posts/geth-poa%E8%81%94%E7%9B%9F%E9%93%BE%E6%90%AD%E5%BB%BA/" /><link rel="next" href="https://7levy.github.io/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Brownie简明教程",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/7levy.github.io\/posts\/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/7levy.github.io\/posts\/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B\/featured-image.jpg",
+                            "width":  553 ,
+                            "height":  294 
+                        }],"genre": "posts","keywords": "solidity, ethereum","wordcount":  1402 ,
+        "url": "https:\/\/7levy.github.io\/posts\/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B\/","datePublished": "2021-11-15T12:13:05+08:00","dateModified": "2021-11-15T12:13:05+08:00","publisher": {
+            "@type": "Organization",
+            "name": "Levy"},"author": {
+                "@type": "Person",
+                "name": "Levy"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="叽喳Block"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/chain.png"
+        data-srcset="/images/chain.png, /images/chain.png 1.5x, /images/chain.png 2x"
+        data-sizes="auto"
+        alt="/images/chain.png"
+        title="/images/chain.png" /><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入文章名称或内容" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="叽喳Block"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/chain.png"
+        data-srcset="/images/chain.png, /images/chain.png 1.5x, /images/chain.png 2x"
+        data-sizes="auto"
+        alt="/images/chain.png"
+        title="/images/chain.png" /><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入文章名称或内容" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Brownie简明教程</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/7Levy" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Levy</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/sc/"><i class="far fa-folder fa-fw"></i>sc</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-15">2021-11-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1402 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg"
+        data-srcset="/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg, /posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg 1.5x, /posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg 2x"
+        data-sizes="auto"
+        alt="/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg"
+        title="/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/featured-image.jpg" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#brownie">Brownie?</a></li>
+    <li><a href="#环境配置">环境配置</a>
+      <ul>
+        <li><a href="#依赖">依赖</a></li>
+        <li><a href="#pipx安装">pipx安装</a></li>
+        <li><a href="#brownie安装">Brownie安装</a></li>
+      </ul>
+    </li>
+    <li><a href="#新建项目">新建项目</a>
+      <ul>
+        <li><a href="#创建一个空的项目">创建一个空的项目</a></li>
+        <li><a href="#从模板中构建项目">从模板中构建项目</a></li>
+        <li><a href="#项目结构">项目结构</a></li>
+      </ul>
+    </li>
+    <li><a href="#编译合约">编译合约</a></li>
+    <li><a href="#合约交互">合约交互</a>
+      <ul>
+        <li><a href="#方法1-控制台">方法1-控制台</a></li>
+        <li><a href="#方法2-运行脚本">方法2-运行脚本</a></li>
+      </ul>
+    </li>
+    <li><a href="#脚本测试">脚本测试</a></li>
+    <li><a href="#扩展内容">扩展内容</a>
+      <ul>
+        <li><a href="#brownie包管理">Brownie包管理</a></li>
+        <li><a href="#brownie-gui">Brownie GUI</a></li>
+        <li><a href="#accounts-container">Accounts Container</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>参考链接：</p>
+<p><a href="https://web3py.readthedocs.io/en/stable/index.html" target="_blank" rel="noopener noreffer">web3.py</a></p>
+<p><a href="https://eth-brownie.readthedocs.io/en/stable/toctree.html" target="_blank" rel="noopener noreffer">eth-brownie</a></p>
+<p><a href="https://mirabdulhaseeb.medium.com/truffle-vs-hardhat-vs-brownie-lets-compare-ea08b927d084" target="_blank" rel="noopener noreffer">Truffle vs Hardhat vs Brownie — Let’s have a look</a></p>
+<p><a href="https://github.com/yearn/yearn-protocol" target="_blank" rel="noopener noreffer">yearn.finance</a></p>
+</blockquote>
+<h2 id="brownie">Brownie?</h2>
+<p>Brownie是一个基于Python的以太坊智能合开发和测试框架。</p>
+<p>下面是Medium作者Mir AbdulHaseeb对于该框架的一些总结。</p>
+<ul>
+<li>技术方面：Python、Web3.py、区块链分叉、Etherscan插件、Vype支持</li>
+<li>区块链环境：Ganache/本地、测试网、主网</li>
+<li>含测试框架</li>
+<li>维护：非常积极</li>
+<li>支持：积极</li>
+<li>开源</li>
+</ul>
+<p>对于我个人来说，Brownie的使用体验相较于Truffle和hardhat确实要更简洁。聚合器龙头YFI就是使用的Brownie框架，其中合约的测试仅需要用到Pytest和Brownie库就可完成全部编码。通过Python脚本完成智能合约的部署工作。</p>
+<p>对于那些不习惯JavaScript进行合约测试的工程师，Brownie是最合适不过的了。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="Snipaste_2021-12-31_13-43-37.png"
+        data-srcset="/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/Snipaste_2021-12-31_13-43-37.png, Snipaste_2021-12-31_13-43-37.png 1.5x, /posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/Snipaste_2021-12-31_13-43-37.png 2x"
+        data-sizes="auto"
+        alt="/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/Snipaste_2021-12-31_13-43-37.png"
+        title="Snipaste_2021-12-31_13-43-37" /></p>
+<h2 id="环境配置">环境配置</h2>
+<h3 id="依赖">依赖</h3>
+<ul>
+<li><a href="https://www.python.org/downloads/release/python-368/" target="_blank" rel="noopener noreffer">python3</a> version 3.6 or greater, python3-dev</li>
+<li><a href="https://github.com/trufflesuite/ganache-cli" target="_blank" rel="noopener noreffer">ganache-cli</a> - tested with version <a href="https://github.com/trufflesuite/ganache-cli/releases/tag/v6.12.2" target="_blank" rel="noopener noreffer">6.12.2</a></li>
+<li>pipx</li>
+<li>Microsoft Visual C++ 14.0</li>
+</ul>
+<h3 id="pipx安装">pipx安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">python -m pip install --user pipx
+python -m pipx ensurepath
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="brownie安装">Brownie安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">pipx install eth-brownie
+#安装完成后输入brownie验证是否安装成功
+brownie --version
+</code></pre></td></tr></table>
+</div>
+</div><p>如果Brownie安装中出现&quot;Microsoft Visual C++ 14.0 is required&quot;可以参考此篇解决方案https://zhuanlan.zhihu.com/p/165008313</p>
+<h2 id="新建项目">新建项目</h2>
+<h3 id="创建一个空的项目">创建一个空的项目</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">brownie init
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="从模板中构建项目">从模板中构建项目</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">brownie bake token
+</code></pre></td></tr></table>
+</div>
+</div><p>更多模板请查看https://github.com/brownie-mix</p>
+<h3 id="项目结构">项目结构</h3>
+<ul>
+<li><code>contracts/</code>: 合约文件</li>
+<li><code>interfaces/</code>: 接口文件</li>
+<li><code>scripts/</code>: 部署和交互脚本</li>
+<li><code>tests/</code>: 测试脚本</li>
+<li><code>build/</code>:编译后的文件和单元测试结果</li>
+<li><code>reports</code>:GUI中使用的JSON报告文件</li>
+</ul>
+<h2 id="编译合约">编译合约</h2>
+<p>brownie会编译所有在<code>contracts/</code>中存在的合约文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">brownie compile
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="合约交互">合约交互</h2>
+<h3 id="方法1-控制台">方法1-控制台</h3>
+<p>控制器与Python解释器十分类似，我们可以在控制台直接调用Python代码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">brownie console
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="方法2-运行脚本">方法2-运行脚本</h3>
+<p>除了console交互的方式，我们还可以使用<a href="https://eth-brownie.readthedocs.io/en/stable/api.html" target="_blank" rel="noopener noreffer">Brownie API</a>在<code>scripts/</code>中编写自动化脚本。</p>
+<p>脚本样例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">from brownie import Token, accounts
+
+def main():
+    Token.deploy(&#34;Test Token&#34;, &#34;TST&#34;, 18, 1e23, {&#39;from&#39;: accounts[0]})
+</code></pre></td></tr></table>
+</div>
+</div><p>运行脚本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">#execute a script from the command line
+brownie run &lt;script&gt;[function]
+
+# executes the main() function within scripts/token.py
+run(&#39;&lt;script&gt;&#39;)
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="脚本测试">脚本测试</h2>
+<p>测试脚本存储在<code>tests/</code>中，我们可以用以下操作完成测试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">brownie test
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="扩展内容">扩展内容</h2>
+<h3 id="brownie包管理">Brownie包管理</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Brownie v1.17.2 - Python development framework for Ethereum
+
+Usage: brownie pm &lt;command&gt; [&lt;arguments&gt; ...] [options]
+
+Commands:
+  list                          List available accounts
+  install &lt;uri&gt; [version]       Install a new package
+  clone &lt;id&gt; [path]             Make a copy of an installed package
+  delete &lt;id&gt;                   Delete an installed package
+
+Options:
+  --help -h                     Display this message
+
+Manager for packages installed from ethPM and Github. Installed packages can
+be added as dependencies and imported into your own projects.
+
+See https://eth-brownie.readthedocs.io/en/stable/package-manager.html for
+more information on how to install and use packages.
+</code></pre></td></tr></table>
+</div>
+</div><p>brownie支持从ethPM和Github下载软件包并安装。</p>
+<p>从Github安装 OpenZeppelin合约3.0.0:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">#包标准：<sup>ORGANIZATION</sup>/<sub>REPOSITORY</sub>@[VERSION]
+brownie pm install OpenZeppelin/openzeppelin-contracts@3.0.0
+</code></pre></td></tr></table>
+</div>
+</div><p>从ethPM安装:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">#包标准：ethpm://<sup>CONTRACT_ADDRESS]:[CHAIN_ID</sup>/<sub>PACKAGE_NAME</sub>@[VERSION]
+brownie pm install ethpm://defi.snakecharmers.eth:1/compound@1.1.0
+</code></pre></td></tr></table>
+</div>
+</div><p>安装到当前目录：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">brownie pm clone OpenZeppelin/openzeppelin-contracts@3.0.0
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="brownie-gui">Brownie GUI</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">brownie gui #命令行
+GUI() #控制台
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="accounts-container">Accounts Container</h3>
+<p>进入控制台后，Brownie提供账户命令交互功能。常见的命令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">accounts(a/Accounts):列出本地账户
+accounts[0]:第一个账户
+
+#余额
+accounts[1].balance():账户余额
+
+#转账
+accounts[0].transfer(accounts[1], &#34;10 ether&#34;):给accounts[1]转账。字符串可以指定单位，数值默认单位为wei
+
+#添加
+accounts.add()
+accounts.add(&#39;&lt;private_key&gt;&#39;)
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-15</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" data-title="Brownie简明教程" data-hashtags="solidity,ethereum"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" data-hashtag="solidity"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Linkedin" data-sharer="linkedin" data-url="https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" data-title="Brownie简明教程" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" data-title="Brownie简明教程"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" data-title="Brownie简明教程" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://7levy.github.io/posts/brownie%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" data-title="Brownie简明教程"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/solidity/">solidity</a>,&nbsp;<a href="/tags/ethereum/">ethereum</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/geth-poa%E8%81%94%E7%9B%9F%E9%93%BE%E6%90%AD%E5%BB%BA/" class="prev" rel="prev" title="Geth POA联盟链搭建"><i class="fas fa-angle-left fa-fw"></i>Geth POA联盟链搭建</a>
+            <a href="/posts/hardhat%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" class="next" rel="next" title="Hardhat简明教程">Hardhat简明教程<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">我们绝不倒下.让刽子手显得高大.好阻挡那自由的风</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Levy</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"叽喳Block","id-2":"叽喳Block"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":0,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
