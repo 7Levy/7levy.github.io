@@ -1,4 +1,4 @@
-# dYdX解读系列1—白皮书核心内容
+# dYdX解读—保证金协议
 
 
 > 本文作者：[@7Levy](https://github.com/7Levy)
