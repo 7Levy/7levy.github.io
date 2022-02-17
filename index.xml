@@ -6,12 +6,12 @@
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 03 Dec 2021 12:10:05 &#43;0800</lastBuildDate>
             <atom:link href="https://7levy.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>Master Solidity-极限优化合约Gas</title>
+    <title>Master Solidity-极限优化合约</title>
     <link>https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/</link>
     <pubDate>Fri, 03 Dec 2021 12:10:05 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/</guid>
-    <description><![CDATA[合约Gas优化 Solidity optimization 在我们编译solidity智能合约的时候，我们需要指定一个参数来告诉solidity编译器生成优化的字节码。如果你不使用优]]></description>
+    <description><![CDATA[Gas与字节码优化 Solidity optimization 在我们编译solidity智能合约的时候，我们需要指定一个参数来告诉solidity编译器生成优化的字节码。如果你不使]]></description>
 </item><item>
     <title>dYdX解读—保证金协议</title>
     <link>https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/</link>
