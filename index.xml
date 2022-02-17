@@ -3,9 +3,16 @@
         <title>叽喳Block</title>
         <link>https://7levy.github.io/</link>
         <description>人生、技术、投资和这个世界.</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 30 Nov 2021 08:15:05 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 03 Dec 2021 12:10:05 &#43;0800</lastBuildDate>
             <atom:link href="https://7levy.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Master Solidity-极限优化合约Gas</title>
+    <link>https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/</link>
+    <pubDate>Fri, 03 Dec 2021 12:10:05 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/</guid>
+    <description><![CDATA[合约Gas优化 Solidity optimization 在我们编译solidity智能合约的时候，我们需要指定一个参数来告诉solidity编译器生成优化的字节码。如果你不使用优]]></description>
+</item><item>
     <title>dYdX解读—保证金协议</title>
     <link>https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/</link>
     <pubDate>Tue, 30 Nov 2021 08:15:05 &#43;0800</pubDate>
@@ -54,13 +61,6 @@
     <author>作者</author>
     <guid>https://7levy.github.io/posts/geth-poa%E8%81%94%E7%9B%9F%E9%93%BE%E6%90%AD%E5%BB%BA/</guid>
     <description><![CDATA[搭建以太坊联盟链 创建节点目录 1 2 3 [root@google01 private-POA-chian]# mkdir node-1 node-2 node-3 [root@google01 private-POA-chian]# ls node-1 node-2 node-3 新建账户 1 2 3 [root@google01 private-POA-chian]# geth --datadir ./node-1/data account new [root@google01 private-POA-chian]# geth --datadir ./node-2/data account new [root@google01 private-POA-chian]# geth --datadir ./node-3/data account new 创建的地址 node-1：8]]></description>
-</item><item>
-    <title>Master Solidity-极限优化GAS</title>
-    <link>https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/</link>
-    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/</guid>
-    <description><![CDATA[本文作者：@7Levy 参考链接： How to optimize gas cost in a Solidity smart contract? 6 tips https://ethereum.stackexchange.com/questions/99971/what-does-enable-optimization-mean-in-remix-and-what-does-it-do/99973 https://ethereum.stackexchange.com/questions/16766/any-reason-not-to-use-browser-soliditys-enable-optimization https://eips.ethereum.org/EIPS/eip-1167 https://github.com/optionality/clone-factory https://ethereum.stackexchange.com/questions/28813/how-to-write-an-optimized-gas-cost-smart-contract/28848 https://blog.polymath.network/solidity-tips-and-tricks-to-save-gas-and-reduce-bytecode-size-c44580b218e6 优化GAS 最小化链上数据 对一个Dapp重要的数据必须放在链上，将非关键部]]></description>
 </item><item>
     <title>Why Web3 Matters-为什么Web3如此重要？</title>
     <link>https://7levy.github.io/posts/why-web3-matters/</link>

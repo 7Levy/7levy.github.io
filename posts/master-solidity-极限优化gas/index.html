@@ -5,25 +5,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Master Solidity-极限优化GAS - 叽喳Block</title><meta name="Description" content="人生、技术、投资和这个世界."><meta property="og:title" content="Master Solidity-极限优化GAS" />
-<meta property="og:description" content="本文作者：@7Levy 参考链接： How to optimize gas cost in a Solidity smart contract? 6 tips https://ethereum.stackexchange.com/questions/99971/what-does-enable-optimization-mean-in-remix-and-what-does-it-do/99973 https://ethereum.stackexchange.com/questions/16766/any-reason-not-to-use-browser-soliditys-enable-optimization https://eips.ethereum.org/EIPS/eip-1167 https://github.com/optionality/clone-factory https://ethereum.stackexchange.com/questions/28813/how-to-write-an-optimized-gas-cost-smart-contract/28848 https://blog.polymath.network/solidity-tips-and-tricks-to-save-gas-and-reduce-bytecode-size-c44580b218e6 优化GAS 最小化链上数据 对一个Dapp重要的数据必须放在链上，将非关键部" />
+        <title>Master Solidity-极限优化合约Gas - 叽喳Block</title><meta name="Description" content="人生、技术、投资和这个世界."><meta property="og:title" content="Master Solidity-极限优化合约Gas" />
+<meta property="og:description" content="合约Gas优化 Solidity optimization 在我们编译solidity智能合约的时候，我们需要指定一个参数来告诉solidity编译器生成优化的字节码。如果你不使用优" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" /><meta property="og:image" content="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/featured-image.jpg"/><meta property="article:section" content="posts" />
-
-
+<meta property="article:published_time" content="2021-12-03T12:10:05+08:00" />
+<meta property="article:modified_time" content="2021-12-03T12:10:05+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/featured-image.jpg"/>
-<meta name="twitter:title" content="Master Solidity-极限优化GAS"/>
-<meta name="twitter:description" content="本文作者：@7Levy 参考链接： How to optimize gas cost in a Solidity smart contract? 6 tips https://ethereum.stackexchange.com/questions/99971/what-does-enable-optimization-mean-in-remix-and-what-does-it-do/99973 https://ethereum.stackexchange.com/questions/16766/any-reason-not-to-use-browser-soliditys-enable-optimization https://eips.ethereum.org/EIPS/eip-1167 https://github.com/optionality/clone-factory https://ethereum.stackexchange.com/questions/28813/how-to-write-an-optimized-gas-cost-smart-contract/28848 https://blog.polymath.network/solidity-tips-and-tricks-to-save-gas-and-reduce-bytecode-size-c44580b218e6 优化GAS 最小化链上数据 对一个Dapp重要的数据必须放在链上，将非关键部"/>
+<meta name="twitter:title" content="Master Solidity-极限优化合约Gas"/>
+<meta name="twitter:description" content="合约Gas优化 Solidity optimization 在我们编译solidity智能合约的时候，我们需要指定一个参数来告诉solidity编译器生成优化的字节码。如果你不使用优"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" /><link rel="prev" href="https://7levy.github.io/posts/why-web3-matters/" /><link rel="next" href="https://7levy.github.io/posts/geth-poa%E8%81%94%E7%9B%9F%E9%93%BE%E6%90%AD%E5%BB%BA/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" /><link rel="prev" href="https://7levy.github.io/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Master Solidity-极限优化GAS",
+        "headline": "Master Solidity-极限优化合约Gas",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -33,8 +33,8 @@
                             "url": "https:\/\/7levy.github.io\/posts\/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas\/featured-image.jpg",
                             "width":  1920 ,
                             "height":  1080 
-                        }],"genre": "posts","keywords": "solidity, ethereum","wordcount":  1466 ,
-        "url": "https:\/\/7levy.github.io\/posts\/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas\/","publisher": {
+                        }],"genre": "posts","keywords": "solidity, ethereum","wordcount":  2881 ,
+        "url": "https:\/\/7levy.github.io\/posts\/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas\/","datePublished": "2021-12-03T12:10:05+08:00","dateModified": "2021-12-03T12:10:05+08:00","publisher": {
             "@type": "Organization",
             "name": "Levy"},"author": {
                 "@type": "Person",
@@ -122,10 +122,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Master Solidity-极限优化GAS</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">Master Solidity-极限优化合约Gas</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/7Levy" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Levy</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ethereum/"><i class="far fa-folder fa-fw"></i>ethereum</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1466 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2881 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -140,9 +140,8 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#优化gas">优化GAS</a>
+    <li><a href="#合约gas优化">合约Gas优化</a>
       <ul>
-        <li><a href="#最小化链上数据">最小化链上数据</a></li>
         <li><a href="#solidity-optimization">Solidity optimization</a></li>
         <li><a href="#优化变量声明顺序">优化变量声明顺序</a></li>
         <li><a href="#使用字面量代替重复计算的值">使用字面量代替重复计算的值</a></li>
@@ -150,29 +149,22 @@
         <li><a href="#内联汇编">内联汇编</a></li>
         <li><a href="#短路规则">短路规则</a></li>
         <li><a href="#循环中使用局部变量">循环中使用局部变量</a></li>
+        <li><a href="#不使用默认值去初始化变量">不使用默认值去初始化变量</a></li>
+        <li><a href="#使用较短的reason字符串">使用较短的reason字符串</a></li>
+        <li><a href="#减少内联造成的字节码冗余浪费">减少内联造成的字节码冗余浪费</a></li>
+        <li><a href="#尽量使用256位的变量">尽量使用256位的变量</a></li>
+        <li><a href="#使用external修饰符">使用external修饰符</a></li>
+        <li><a href="#删除不需要的变量">删除不需要的变量</a></li>
+        <li><a href="#在字节码中直接存储值">在字节码中直接存储值</a></li>
+        <li><a href="#无状态合约">无状态合约</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><blockquote>
-<p>本文作者：<a href="https://github.com/7Levy" target="_blank" rel="noopener noreffer">@7Levy</a></p>
-<p>参考链接：</p>
-<ul>
-<li><a href="https://eattheblocks.com/how-to-optimize-gas-cost-in-a-solidity-smart-contract-6-tips/" target="_blank" rel="noopener noreffer">How to optimize gas cost in a Solidity smart contract? 6 tips</a></li>
-<li><a href="https://ethereum.stackexchange.com/questions/99971/what-does-enable-optimization-mean-in-remix-and-what-does-it-do/99973" target="_blank" rel="noopener noreffer">https://ethereum.stackexchange.com/questions/99971/what-does-enable-optimization-mean-in-remix-and-what-does-it-do/99973</a></li>
-<li><a href="https://ethereum.stackexchange.com/questions/16766/any-reason-not-to-use-browser-soliditys-enable-optimization" target="_blank" rel="noopener noreffer">https://ethereum.stackexchange.com/questions/16766/any-reason-not-to-use-browser-soliditys-enable-optimization</a></li>
-<li><a href="https://eips.ethereum.org/EIPS/eip-1167" target="_blank" rel="noopener noreffer">https://eips.ethereum.org/EIPS/eip-1167</a></li>
-<li><a href="https://github.com/optionality/clone-factory" target="_blank" rel="noopener noreffer">https://github.com/optionality/clone-factory</a></li>
-<li><a href="https://ethereum.stackexchange.com/questions/28813/how-to-write-an-optimized-gas-cost-smart-contract/28848" target="_blank" rel="noopener noreffer">https://ethereum.stackexchange.com/questions/28813/how-to-write-an-optimized-gas-cost-smart-contract/28848</a></li>
-<li><a href="https://blog.polymath.network/solidity-tips-and-tricks-to-save-gas-and-reduce-bytecode-size-c44580b218e6" target="_blank" rel="noopener noreffer">https://blog.polymath.network/solidity-tips-and-tricks-to-save-gas-and-reduce-bytecode-size-c44580b218e6</a></li>
-</ul>
-</blockquote>
-<h2 id="优化gas">优化GAS</h2>
-<h3 id="最小化链上数据">最小化链上数据</h3>
-<p>对一个Dapp重要的数据必须放在链上，将非关键部分的代码放在链下。</p>
+            </div><div class="content" id="content"><h2 id="合约gas优化">合约Gas优化</h2>
 <h3 id="solidity-optimization">Solidity optimization</h3>
 <p>在我们编译solidity智能合约的时候，我们需要指定一个参数来告诉solidity编译器生成优化的字节码。如果你不使用优化参数的话，那么就会花费更多的gas。</p>
-<p>在实际的开发中，这种优化方式会更长的编译时间，默认情况下是关闭的。以Hardhat为例，我们可以在配置文件hardhat.config.js中启用，并设置你所期望的运行次数，runs指定了部署代码的每个操作码在合约生命周期内执行的频率。runs较小时(如1)，初始字节码较短，部署成本低，但会导致后期合约执行成本高。runs较大时(如1000)，初始字节码较长且复杂，部署成本更高，但对合约的调用会更便宜。对于这个参数，我们需要针对所写的合约来设置，如果合约只是一次性的代码，设置成1即可。对于ERC20代币之类的合约，设置较大的数字能显著地减少调用成本。</p>
+<p>在实际的开发中，这种优化方式会更长的编译时间，默认情况下是关闭的。以Hardhat为例，我们可以在配置文件hardhat.config.js中启用，并设置你所期望的运行次数，runs假定代码的每个操作码在合约生命周期内执行的次数。runs较小时(如1)，初始字节码较短，部署成本低，但会导致后期合约执行成本高。runs较大时(如1000)，初始字节码较长且复杂，部署成本更高，但对合约的调用会更便宜。对于这个参数，我们需要针对所写的合约来设置，如果合约只是一次性的代码，设置成1即可。对于ERC20代币之类的合约，设置较大的数字能显著地减少调用成本。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -202,7 +194,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="优化变量声明顺序">优化变量声明顺序</h3>
-<p>solidity数据存储在32字节的slots中，采用紧密打包的模式存放数据。因此我们可以通过内存对齐的方式，来减少变量占用的插槽数。如下面的例子。</p>
+<p>solidity数据存储在32字节的slots中，采用紧密打包的模式存放数据。因此我们可以通过内存对齐的方式，来减少变量占用的插槽数(需要打开optimizer功能)。如下面的例子。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -275,32 +267,90 @@ bytes32 constant hash = keccack256(abi.encodePacked(&#39;xxxx&#39;));
 }
 </code></pre></td></tr></table>
 </div>
+</div><p>除此之外，我们还可以使用assembly打包变量到一个插槽中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">//打包uint64变量_a,_b,_c,_d到一个slot中
+function encode(uint64 _a, uint64 _b, uint64 _c, uint64 _d) internal pure returns (bytes32 x) {
+    assembly {
+        let y := 0
+        mstore(0x20, _d)
+        mstore(0x18, _c)
+        mstore(0x10, _b)
+        mstore(0x8, _a)
+        x := mload(0x20)
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">//解码
+function decode(bytes32 x) internal pure returns (uint64 a, uint64 b, uint64 c, uint64 d) {
+    assembly {
+        d := x
+        mstore(0x18, x)
+        a := mload(0)
+        mstore(0x10, x)
+        b := mload(0)
+        mstore(0x8, x)
+        c := mload(0)
+    }
+}
+</code></pre></td></tr></table>
+</div>
 </div><h3 id="短路规则">短路规则</h3>
-<p>以f(x)||g(x)为例，如果f(x)为true，那么就不会执行g(x)函数。因此，在涉及这类操作时，我们可以把成本更高的操作码放在后面。当f(x)成本大于g(x)，我们可以按以下规则编码。</p>
-<p>以f(x)||g(x)为例，如果f(x)为true，那么就不会执行g(x)函数。因此，在涉及这类操作时，我们可以把成本更高的操作码放在后面。当f(x)成本大于g(x)，我们可以按以下规则编码。</p>
+<p>以f(x)||g(x)为例，如果f(x)为true，那么就不会执行g(x)函数。因此，在涉及这类操作时，我们可以把成本更高的操作码放在后面。当f(x)成本小于g(x)，我们可以按以下规则编码。</p>
 <ul>
 <li>OR：f(x) || g(x)</li>
 <li>AND：f(x) &amp;&amp; g(x)</li>
 </ul>
 <p>在成本接近的时候，我们还可以根据返回值的几率来设置短路规则。如果g(x)返回true的概率大于f(x)，OR操作需要把g(x)放在前面，如果g(x)返回false 的概率大于f(x)，AND操作需要把g(x)放在前面。</p>
 <h3 id="循环中使用局部变量">循环中使用局部变量</h3>
+<p>第一段代码如下，sum在每次循环中都读取和写入，storage的执行成本相对于memory来说更高。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"> uint a = 0;
- function test ( uint x ){
-     for ( uint i = 0 ; i &lt; x ; i++)
-         sum += i; 
- }
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    uint256 sum = 0;
+    function test(uint256 x) public {
+        for (uint256 i = 0; i &lt; x; i++) sum += i;
+    }
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div><p>所以我们可以在循环中引入memory类型的临时变量以减少循环执行的成本。</p>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -310,26 +360,122 @@ bytes32 constant hash = keccack256(abi.encodePacked(&#39;xxxx&#39;));
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"> uint sum = 0;
- function p3 ( uint x ){
-     uint temp = 0;
-     for ( uint i = 0 ; i &lt; x ; i++)
-         temp += i; }
-     sum += temp;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    uint256 sum = 0;
+    function p3(uint256 x) public {
+        uint256 temp = 0;
+        for (uint256 i = 0; i &lt; x; i++) temp += i;
+        sum += temp;
+    }
 </code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div><h3 id="不使用默认值去初始化变量">不使用默认值去初始化变量</h3>
+<p>变量在没有被初始化的时候，会有一个缺省值。如果显式地使用它的默认值初始化它，这只会浪费你的gas。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">uint256 hello = 0; //bad, expensive
+uint256 world; //good, cheap
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="使用较短的reason字符串">使用较短的reason字符串</h3>
+<p>在require语句中我们会附加错误原因，这些字符串也会占用部署的字节码的空间。每个字符串至少需要32字节，我们需要尽量保持reason的精简。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">require(balance &gt;= amount, &#34;Insufficient balance&#34;); //good
+
+require(balance &gt;= amount, &#34;To whomsoever it may con·cern. I am writing this error message to let you know that the amount you are trying to transfer is unfortunately more than your current balance. Perhaps you made a typo or you are just trying to be a hacker boi. In any case, this transaction is going to revert. Please try again with a lower amount. Warm regards, EVM&#34;; //bad
+</code></pre></td></tr></table>
+</div>
+</div><p>###单行交换和三元运算符</p>
+<p>我们可以使用单行交换的方式来改变变量值，不需要临时变量等来交换值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(hello, world) = (world, hello)
+</code></pre></td></tr></table>
+</div>
+</div><p>solidity支持三元运算符的方式来赋值，这可以减少冗余的if-else代码。以下为uniswap的token地址排序参考代码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(token0, token1) = tokenA &lt; tokenB? (tokenA, tokenB):(tokenB, tokenA);
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="减少内联造成的字节码冗余浪费">减少内联造成的字节码冗余浪费</h3>
+<p>modifier修饰符会将代码放入_位置处，这是一种内联操作，虽然能提高效率，但会造成字节码的浪费。EIP170规定合约的大小限制在24KB以内，如果一个代码被内联多次，那么合约的大小会大大地增加。</p>
+<p>我们可以在modifier中直接调用internal函数，internal函数作为独立的函数调用，运行时代价略高，但减少了冗余的字节码。同时，internal函数可以避免堆栈过深的错误，在internal函数中创建的变量和原始函数不共享受限堆栈。可以参考polymath的具体实现<a href="https://github.com/PolymathNetwork/polymath-core/pull/548/commits/2dc0286f4e96241eed9603534607431a8a84ba35#diff-8b6746c2c4e7c9e3fca67d62718d70e8" target="_blank" rel="noopener noreffer">DataStore.sol</a>。</p>
+<h3 id="尽量使用256位的变量">尽量使用256位的变量</h3>
+<p>EVM一次只对32字节/256位进行操作，如果使用uint8之类的变量，EVM会进行转换操作，转换操作需要额外的汽油。</p>
+<ul>
+<li>使用uint256代替uint8</li>
+<li>使用bytes32代替string/bytes、bytes1等</li>
+</ul>
+<p>注：小变量在结构体和数组中以及其他可以紧密打包的场景下更有效。</p>
+<h3 id="使用external修饰符">使用external修饰符</h3>
+<p>对于public函数，输入参数会复制到memory中，会花费gas。如果你的函数只在外部调用，应该显式地标记成external。external函数不会复制到memory中，而是直接从calldata中读取。当输入参数很大时，可以节省大量的时间。</p>
+<h3 id="删除不需要的变量">删除不需要的变量</h3>
+<p>在Ethereum中，如果你释放了存储空间，你会得到gas退款。我们可以使用delete关键字或者是设置为默认值来删除变量。</p>
+<h3 id="在字节码中直接存储值">在字节码中直接存储值</h3>
+<p>对于不需要修改的变量，我们可以使用constant关键字将其硬编码为常量。constant变量会直接在字节码中存储，读取该变量不需要SLOAD操作，可以减少读取时的gas花费。</p>
+<h3 id="无状态合约">无状态合约</h3>
+<p>Stateless作为一种Dapp的设计模式可以大大的减少gas成本，详情可查看此篇文章<a href="https://medium.com/@childsmaidment/stateless-smart-contracts-21830b0cd1b6" target="_blank" rel="noopener noreffer">Stateless Smart Contracts</a>。常用的3种方案就是如下：</p>
+<ul>
+<li>web3请求到主网数据后，读取transaction的input，将数据持久化到中心化后端</li>
+<li>合约将数据存储到event中，web3从event中读取数据</li>
+<li>利用ipfs等存储网络存储数据，将源数据的hash上链</li>
+</ul>
+<blockquote>
+<p>本文作者：<a href="https://github.com/7Levy" target="_blank" rel="noopener noreffer">@7Levy</a></p>
+<p>参考链接：</p>
+<p>专题(一)</p>
+<ul>
+<li><a href="https://eattheblocks.com/how-to-optimize-gas-cost-in-a-solidity-smart-contract-6-tips/" target="_blank" rel="noopener noreffer">How to optimize gas cost in a Solidity smart contract? 6 tips</a></li>
+<li><a href="https://ethereum.stackexchange.com/questions/99971/what-does-enable-optimization-mean-in-remix-and-what-does-it-do/99973" target="_blank" rel="noopener noreffer">https://ethereum.stackexchange.com/questions/99971/what-does-enable-optimization-mean-in-remix-and-what-does-it-do/99973</a></li>
+</ul>
+<p>专题(二)</p>
+<ul>
+<li><a href="https://ethereum.stackexchange.com/questions/16766/any-reason-not-to-use-browser-soliditys-enable-optimization" target="_blank" rel="noopener noreffer">https://ethereum.stackexchange.com/questions/16766/any-reason-not-to-use-browser-soliditys-enable-optimization</a></li>
+<li><a href="https://eips.ethereum.org/EIPS/eip-1167" target="_blank" rel="noopener noreffer">https://eips.ethereum.org/EIPS/eip-1167</a></li>
+<li><a href="https://github.com/optionality/clone-factory" target="_blank" rel="noopener noreffer">https://github.com/optionality/clone-factory</a></li>
+<li><a href="https://ethereum.stackexchange.com/questions/28813/how-to-write-an-optimized-gas-cost-smart-contract/28848" target="_blank" rel="noopener noreffer">https://ethereum.stackexchange.com/questions/28813/how-to-write-an-optimized-gas-cost-smart-contract/28848</a></li>
+<li><a href="https://arxiv.org/pdf/1703.03994.pdf" target="_blank" rel="noopener noreffer">https://arxiv.org/pdf/1703.03994.pdf</a></li>
+</ul>
+<p>专题(三)</p>
+<ul>
+<li><a href="https://blog.polymath.network/solidity-tips-and-tricks-to-save-gas-and-reduce-bytecode-size-c44580b218e6" target="_blank" rel="noopener noreffer">https://blog.polymath.network/solidity-tips-and-tricks-to-save-gas-and-reduce-bytecode-size-c44580b218e6</a></li>
+<li><a href="https://mudit.blog/solidity-gas-optimization-tips/" target="_blank" rel="noopener noreffer">https://mudit.blog/solidity-gas-optimization-tips/</a></li>
+<li><a href="https://ethereum.stackexchange.com/questions/19380/external-vs-public-best-practices" target="_blank" rel="noopener noreffer">https://ethereum.stackexchange.com/questions/19380/external-vs-public-best-practices</a></li>
+</ul>
+<p>专题(四)</p>
+<ul>
+<li><a href="https://medium.com/coinmonks/8-ways-of-reducing-the-gas-consumption-of-your-smart-contracts-9a506b339c0a" target="_blank" rel="noopener noreffer">https://medium.com/coinmonks/8-ways-of-reducing-the-gas-consumption-of-your-smart-contracts-9a506b339c0a</a></li>
+<li><a href="https://mirror.xyz/0xmobius.eth/xAomQ_AVuYsK9V7VotByi320MqfDM4d_pDiCZ4w-Eok" target="_blank" rel="noopener noreffer">https://mirror.xyz/0xmobius.eth/xAomQ_AVuYsK9V7VotByi320MqfDM4d_pDiCZ4w-Eok</a></li>
+</ul>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 0001-01-01</span>
+                <span>更新于 2021-12-03</span>
             </div>
             <div class="post-info-license"></div>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" data-title="Master Solidity-极限优化GAS" data-hashtags="solidity,ethereum"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" data-hashtag="solidity"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Linkedin" data-sharer="linkedin" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" data-title="Master Solidity-极限优化GAS" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" data-title="Master Solidity-极限优化GAS"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" data-title="Master Solidity-极限优化GAS" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" data-title="Master Solidity-极限优化GAS"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" data-title="Master Solidity-极限优化合约Gas" data-hashtags="solidity,ethereum"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" data-hashtag="solidity"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Linkedin" data-sharer="linkedin" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/"><i class="fab fa-linkedin fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" data-title="Master Solidity-极限优化合约Gas" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" data-title="Master Solidity-极限优化合约Gas"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" data-title="Master Solidity-极限优化合约Gas" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://7levy.github.io/posts/master-solidity-%E6%9E%81%E9%99%90%E4%BC%98%E5%8C%96gas/" data-title="Master Solidity-极限优化合约Gas"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -341,8 +487,7 @@ bytes32 constant hash = keccack256(abi.encodePacked(&#39;xxxx&#39;));
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/why-web3-matters/" class="prev" rel="prev" title="Why Web3 Matters-为什么Web3如此重要？"><i class="fas fa-angle-left fa-fw"></i>Why Web3 Matters-为什么Web3如此重要？</a>
-            <a href="/posts/geth-poa%E8%81%94%E7%9B%9F%E9%93%BE%E6%90%AD%E5%BB%BA/" class="next" rel="next" title="Geth POA联盟链搭建">Geth POA联盟链搭建<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/posts/dydx%E8%A7%A3%E8%AF%BB-%E4%BF%9D%E8%AF%81%E9%87%91%E5%8D%8F%E8%AE%AE/" class="prev" rel="prev" title="dYdX解读—保证金协议"><i class="fas fa-angle-left fa-fw"></i>dYdX解读—保证金协议</a></div>
 </div>
 </article></div>
             </main><footer class="footer">
